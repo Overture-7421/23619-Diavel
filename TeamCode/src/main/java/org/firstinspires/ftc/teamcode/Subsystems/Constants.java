@@ -4,19 +4,33 @@ public final class Constants {
     private Constants(){}
 
     public static class Arm {
-        //Arm Positions
-        public static final double ARMLOWBASKET = 2;
-        public static final double ARM_HIGHBASKET = 3;
-        public static final double ARMLOWCHAMBER = 4;
-        public static final double ARMHIGHCHAMBER = 5;
+        /* ARM POSITIONS */
+            public static final double ARM_STOW = 47;
+            public static final double ARM_GROUNDGRAB = 44;
+            public static final double ARM_CLIMB = 50; /* PENDING TEST */
+
+            // BASKETS
+            public static final double ARM_LOWBASKET = 95;
+            public static final double ARM_HIGHBASKET = 95;
+
+            // CHAMBERS
+            public static final double ARM_LOWCHAMBER = 0;
+            public static final double ARM_HIGHCHAMBER = 15;// 15 si se hace de abajo-arriba y 90 si se hace de arriba-abajo
     }
 
     public static class Elevator {
-        //Elevator Positions
-        public static final double ELEVATOROWBASKET = 2;
-        public static final double ELEVATORHIGHBASKET = 3;
-        public static final double ELEVATORLOWCHAMBER = 4;
-        public static final double ELEVATORHIGHCHAMBER = 5;
+        /* ELEVATOR POSITIONS */
+            public static final double ELEVATOR_STOW = 0;
+            public static final double ELEVATOR_GROUNDGRAB = 10;
+            public static final double ELEVATOR_CLIMB = 50; /* PENDING TEST */
+
+            // BASKETS
+            public static final double ELEVATOR_LOWBASKET = 6;
+            public static final double ELEVATOR_HIGHBASKET = 55;
+
+            // CHAMBERS
+            public static final double ELEVATOR_LOWCHAMBER = 0;
+            public static final double ELEVATOR_HIGHCHAMBER = 5;//0 si se hace de arriba-abajo y 5 si se hace de abajo-arriba
 
     }
 }

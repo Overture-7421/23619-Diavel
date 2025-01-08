@@ -2,8 +2,6 @@ package org.firstinspires.ftc.teamcode.Subsystems;
 import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.config.Config;
 import com.overture.ftc.overftclib.Contollers.PIDController;
-import com.overture.ftc.overftclib.Contollers.ProfiledPIDController;
-import com.overture.ftc.overftclib.Contollers.TrapezoidProfile;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
@@ -12,10 +10,10 @@ import com.arcrobotics.ftclib.command.SubsystemBase;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
-@Config
+//@Config
 public class Elevator extends SubsystemBase {
 
-    private final Telemetry telemetry;
+    //private final Telemetry telemetry;
     private final DcMotorEx elevatorMotor;
     private PIDController elevatorMotorPID;
     private final double TICKS_PER_REVOLUTION = 753.2;
@@ -27,12 +25,12 @@ public class Elevator extends SubsystemBase {
 
     public Elevator(HardwareMap hardwareMap) {
         FtcDashboard dashboard = FtcDashboard.getInstance();
-        telemetry = dashboard.getTelemetry();
+        //telemetry = dashboard.getTelemetry();
         elevatorMotor = (DcMotorEx) hardwareMap.get(DcMotor.class, "elevator_Motor");
 
         elevatorMotorPID = new PIDController(0.6,0,0);
         elevatorMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        elevatorMotor.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
+        elevatorMotor.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.FLOAT);
         elevatorMotor.setDirection(DcMotorSimple.Direction.REVERSE);
 
     }
@@ -61,7 +59,7 @@ public class Elevator extends SubsystemBase {
             elevatorMotor.setPower(0.0);
         }
 
-        telemetry.addData("Elevator Pos", getHeight());
-        telemetry.addData("Elevator Target", target);
+        //telemetry.addData("Elevator Height", getHeight());
+        //telemetry.addData("Elevator Target", target);
     }
 }
