@@ -17,8 +17,8 @@ public class LowChamber extends SequentialCommandGroup {
         addCommands(
                 new MoveArm(arm, Constants.Arm.ARM_LOWCHAMBER).withTimeout(500),
                 new WaitCommand(3000), // Tienes que pegarte el chassis a la estructura
-                new MoveArm(arm, -10).withTimeout(500),
-                new WaitCommand(3000),
+                new MoveArm(arm, -15).withTimeout(500),
+                new WaitCommand(1500),
                 new StowAll(arm, elevator)
 
         );

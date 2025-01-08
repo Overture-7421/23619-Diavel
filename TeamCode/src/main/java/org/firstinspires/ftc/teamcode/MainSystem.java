@@ -7,6 +7,7 @@ import org.firstinspires.ftc.teamcode.Commands.Baskets.LowBasket;
 import org.firstinspires.ftc.teamcode.Commands.Chambers.LowChamber;
 import org.firstinspires.ftc.teamcode.Commands.Arm.MoveArm;
 import org.firstinspires.ftc.teamcode.Commands.Elevator.ModifyElevatorCommand;
+import org.firstinspires.ftc.teamcode.Commands.StowAll;
 import org.firstinspires.ftc.teamcode.Subsystems.Chassis;
 import org.firstinspires.ftc.teamcode.Subsystems.Intake;
 import org.firstinspires.ftc.teamcode.Commands.Intake.MoveIntake;
@@ -86,6 +87,10 @@ public class MainSystem extends LinearOpMode {
 
             Button operatorButtonX = operator.getGamepadButton(GamepadKeys.Button.X);
             operatorButtonX.whenPressed(new LowChamber(arm, elevator));
+
+            //STOW ALL
+            Button operatorRightBumper = operator.getGamepadButton(GamepadKeys.Button.RIGHT_BUMPER);
+            operatorRightBumper.whenPressed(new StowAll(arm, elevator));
 
         /* -- GROUNDMOVEINTAKE COMMAND -- */
         /*Button driverButtonA = driver.getGamepadButton(GamepadKeys.Button.A);

@@ -5,7 +5,7 @@ public final class Constants {
 
     public static class Arm {
         /* ARM POSITIONS */
-            public static final double ARM_STOW = 47;
+            public static final double ARM_STOW = -42;
             public static final double ARM_GROUNDGRAB = 44;
             public static final double ARM_CLIMB = 50; /* PENDING TEST */
 
@@ -15,7 +15,7 @@ public final class Constants {
 
             // CHAMBERS
             public static final double ARM_LOWCHAMBER = 0;
-            public static final double ARM_HIGHCHAMBER = 15;// 15 si se hace de abajo-arriba y 90 si se hace de arriba-abajo
+            public static final double ARM_HIGHCHAMBER = 40;// 15 si se hace de abajo-arriba y 90 si se hace de arriba-abajo
     }
 
     public static class Elevator {
