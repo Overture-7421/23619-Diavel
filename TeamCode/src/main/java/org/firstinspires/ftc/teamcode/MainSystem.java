@@ -130,11 +130,6 @@ public class MainSystem extends LinearOpMode {
                 CommandScheduler.getInstance().run();
                 Pose2d pose = chassis.getPose();
 
-                if (arm.isTouchPressed()){
-                    telemetry.addData("Reset Encoder", "Reset");
-                } else {
-                    telemetry.addData("Reset Encoder", "Not Reset");
-                }
 
                 // -- ODOMETRY TELEMETRY -- //
                     telemetry.addLine("--- IMU Telemetry ---");
