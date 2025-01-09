@@ -35,9 +35,10 @@ public class MainSystem extends LinearOpMode {
     private ModifyArmCommand modifyArmCommand;
     private ModifyElevatorCommand modifyElevatorCommand;
 
+
+
     @Override
     public void runOpMode(){
-          
     //CommandScheduler.getInstance().cancelAll();
     //CommandScheduler.getInstance().reset();
     //telemetry = new MultipleTelemetry(FtcDashboard.getInstance().getTelemetry());
@@ -125,10 +126,15 @@ public class MainSystem extends LinearOpMode {
 
         waitForStart();
             chassis.reset(new Pose2d(0,0, Rotation2d.fromDegrees(0)));
-
             while (opModeIsActive()) {
                 CommandScheduler.getInstance().run();
                 Pose2d pose = chassis.getPose();
+
+                if (arm.isTouchPressed()){
+                    telemetry.addData("Reset Encoder", "Reset");
+                } else {
+                    telemetry.addData("Reset Encoder", "Not Reset");
+                }
 
                 // -- ODOMETRY TELEMETRY -- //
                     telemetry.addLine("--- IMU Telemetry ---");

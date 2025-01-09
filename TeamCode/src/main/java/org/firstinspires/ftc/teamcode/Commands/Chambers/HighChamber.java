@@ -22,7 +22,6 @@ public class HighChamber extends SequentialCommandGroup {
                 new MoveArm(arm, 24),
                 new WaitCommand(5000),
                 new StowAll(arm, elevator)
-
                 */
 
                 new MoveArm(arm, Constants.Arm.ARM_HIGHCHAMBER).withTimeout(500),
