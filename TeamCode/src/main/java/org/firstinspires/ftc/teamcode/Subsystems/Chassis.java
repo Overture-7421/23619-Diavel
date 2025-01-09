@@ -46,10 +46,10 @@ public class Chassis extends SubsystemBase {
 
     }
     public double leftDistance() {
-      return ((left_DriveTrain.getCurrentPosition() / TICKS_PER_METER) * TRACK_WIDTH * Math.PI) / REDUCTION;
+      return (-(left_DriveTrain.getCurrentPosition() / TICKS_PER_METER) * TRACK_WIDTH * Math.PI) / REDUCTION;
     }
     public double rightDistance() {
-        return ((right_DriveTrain.getCurrentPosition() / TICKS_PER_METER) * TRACK_WIDTH * Math.PI) / REDUCTION;
+        return (-(right_DriveTrain.getCurrentPosition() / TICKS_PER_METER) * TRACK_WIDTH * Math.PI) / REDUCTION;
     }
 
     public void reset(Pose2d pose2d){

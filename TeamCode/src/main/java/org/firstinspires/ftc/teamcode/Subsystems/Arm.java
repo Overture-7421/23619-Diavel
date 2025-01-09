@@ -81,6 +81,7 @@ public class Arm extends SubsystemBase {
 
         double motorOutput = armPID.calculate(getPosition(), target);
         motor.setPower(motorOutput + armFeedForward(getPosition()));
+
         /*telemetry.addData("Arm Output", motorOutput);
         telemetry.addData("Arm Position", getPosition());
         telemetry.addData("Arm Target", target);*/

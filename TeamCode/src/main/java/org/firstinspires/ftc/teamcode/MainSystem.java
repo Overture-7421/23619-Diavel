@@ -7,6 +7,7 @@ import org.firstinspires.ftc.teamcode.Commands.Baskets.LowBasket;
 import org.firstinspires.ftc.teamcode.Commands.Chambers.LowChamber;
 import org.firstinspires.ftc.teamcode.Commands.Arm.MoveArm;
 import org.firstinspires.ftc.teamcode.Commands.Elevator.ModifyElevatorCommand;
+import org.firstinspires.ftc.teamcode.Commands.GroundGrab;
 import org.firstinspires.ftc.teamcode.Commands.StowAll;
 import org.firstinspires.ftc.teamcode.Subsystems.Chassis;
 import org.firstinspires.ftc.teamcode.Subsystems.Intake;
@@ -66,6 +67,10 @@ public class MainSystem extends LinearOpMode {
         driverButtonB.whenHeld(new MoveIntake(intake,-1.0));
         driverButtonB.whenReleased(new MoveIntake(intake,0.0));
 
+        Button driverButtonRigtBumper= driver.getGamepadButton(GamepadKeys.Button.RIGHT_BUMPER);
+        driverButtonRigtBumper.whenHeld(new GroundGrab(arm, elevator));
+        driverButtonRigtBumper.whenReleased(new GroundGrab(arm, elevator));
+
         // MANUAL ARM
         modifyArmCommand = new ModifyArmCommand(arm, gamepad1);
         arm.setDefaultCommand(modifyArmCommand);
@@ -77,10 +82,10 @@ public class MainSystem extends LinearOpMode {
         // GAME ROUTINES
             // BASKETS
             Button operatorButtonA = operator.getGamepadButton(GamepadKeys.Button.A);
-            operatorButtonA.whenPressed(new LowBasket(arm, elevator, intake));
+            operatorButtonA.whenPressed(new LowBasket(arm, elevator));
 
             Button operatorButtonB = operator.getGamepadButton(GamepadKeys.Button.B);
-            operatorButtonB.whenPressed(new HighBasket(arm, elevator, intake));
+            operatorButtonB.whenPressed(new HighBasket(arm, elevator));
 
             // CHAMBERS
             Button operatorButtonY = operator.getGamepadButton(GamepadKeys.Button.Y);
@@ -88,6 +93,8 @@ public class MainSystem extends LinearOpMode {
 
             Button operatorButtonX = operator.getGamepadButton(GamepadKeys.Button.X);
             operatorButtonX.whenPressed(new LowChamber(arm, elevator));
+
+
 
             //STOW ALL
             Button operatorRightBumper = operator.getGamepadButton(GamepadKeys.Button.RIGHT_BUMPER);
