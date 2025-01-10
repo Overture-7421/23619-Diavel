@@ -15,7 +15,7 @@ public final class Constants {
 
             // CHAMBERS
             public static final double ARM_LOWCHAMBER = 0;
-            public static final double ARM_HIGHCHAMBER = 40;// 15 si se hace de abajo-arriba y 90 si se hace de arriba-abajo
+            public static final double ARM_HIGHCHAMBER = 38;// 15 si se hace de abajo-arriba y 90 si se hace de arriba-abajo
     }
 
     public static class Elevator {

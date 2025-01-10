@@ -80,8 +80,6 @@ public class Arm extends SubsystemBase {
             }
 
 
-        }*/
-
         double motorOutput = armPID.calculate(getPosition(), target);
         motor.setPower(motorOutput + armFeedForward(getPosition()));
 
