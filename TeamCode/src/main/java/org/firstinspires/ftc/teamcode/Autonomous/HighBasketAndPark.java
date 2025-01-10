@@ -83,7 +83,7 @@ public class HighBasketAndPark extends LinearOpMode {
         SequentialCommandGroup testCommandGroup = new SequentialCommandGroup(
                 new TurnToAngle(chassis, Rotation2d.fromDegrees(-135)),
                 new RamsetteCommand(chassis, UP),
-                new HighBasket(arm, elevator),
+                new HighBasket(intake, arm, elevator),
                 new WaitCommand(1500),
                 new StowAll(arm, elevator),
                 new WaitCommand(1000),
@@ -97,7 +97,7 @@ public class HighBasketAndPark extends LinearOpMode {
                 new RamsetteCommand(chassis, getToSecondPosition),
                 new TurnToAngle(chassis, Rotation2d.fromDegrees(135)),
                 new RamsetteCommand(chassis, AlignHighBasket),
-                new HighBasket(arm, elevator),
+                new HighBasket(intake, arm, elevator),
                 new WaitCommand(500),
                 new TurnToAngle(chassis, Rotation2d.fromDegrees(90)),
                 new RamsetteCommand(chassis, getToStartingPosition)
