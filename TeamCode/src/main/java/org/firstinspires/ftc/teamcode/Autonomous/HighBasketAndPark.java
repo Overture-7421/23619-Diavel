@@ -47,8 +47,8 @@ public class HighBasketAndPark extends LinearOpMode {
         TrajectoryConfig forwardConfig = new TrajectoryConfig(0.5, 0.2);
         forwardConfig.setReversed(false);
         Trajectory UP = TrajectoryGenerator.generateTrajectory(Arrays.asList(
-                new Pose2d(0,0,Rotation2d.fromDegrees(0)),
-                new Pose2d(2,0,Rotation2d.fromDegrees(0))), forwardConfig
+                new Pose2d(0,0,Rotation2d.fromDegrees(-135)),
+                new Pose2d(2,0,Rotation2d.fromDegrees(-135))), forwardConfig
         );
 
         TrajectoryConfig backwardConfig = new TrajectoryConfig(0.5, 0.2);
@@ -59,7 +59,7 @@ public class HighBasketAndPark extends LinearOpMode {
         );
 
         TrajectoryConfig forwardConfig2 = new TrajectoryConfig(0.5, 0.2);
-        backwardConfig.setReversed(true);
+        backwardConfig.setReversed(false);
         Trajectory getToSecondPosition = TrajectoryGenerator.generateTrajectory(Arrays.asList(
                 new Pose2d(2,-2,Rotation2d.fromDegrees(180)),
                 new Pose2d(2,0,Rotation2d.fromDegrees(180))), forwardConfig2
@@ -72,8 +72,16 @@ public class HighBasketAndPark extends LinearOpMode {
                 new Pose2d(0,0,Rotation2d.fromDegrees(90))), forwardConfig3
         );
 
+        TrajectoryConfig forwardConfig4 = new TrajectoryConfig(0.5, 0.2);
+        backwardConfig.setReversed(false);
+        Trajectory AlignHighBasket = TrajectoryGenerator.generateTrajectory(Arrays.asList(
+                new Pose2d(2,0,Rotation2d.fromDegrees(135)),
+                new Pose2d(2,0,Rotation2d.fromDegrees(135))), forwardConfig4
+        );
+
 
         SequentialCommandGroup testCommandGroup = new SequentialCommandGroup(
+                new TurnToAngle(chassis, Rotation2d.fromDegrees(-135)),
                 new RamsetteCommand(chassis, UP),
                 new HighBasket(arm, elevator),
                 new WaitCommand(1500),
@@ -87,6 +95,9 @@ public class HighBasketAndPark extends LinearOpMode {
                 new WaitCommand(1500),
                 new TurnToAngle(chassis, Rotation2d.fromDegrees(180)),
                 new RamsetteCommand(chassis, getToSecondPosition),
+                new TurnToAngle(chassis, Rotation2d.fromDegrees(135)),
+                new RamsetteCommand(chassis, AlignHighBasket),
+                new HighBasket(arm, elevator),
                 new WaitCommand(500),
                 new TurnToAngle(chassis, Rotation2d.fromDegrees(90)),
                 new RamsetteCommand(chassis, getToStartingPosition)
