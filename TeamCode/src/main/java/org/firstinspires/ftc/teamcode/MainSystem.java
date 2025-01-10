@@ -5,17 +5,17 @@ import org.firstinspires.ftc.teamcode.Commands.Baskets.HighBasket;
 import org.firstinspires.ftc.teamcode.Commands.Chambers.HighChamber;
 import org.firstinspires.ftc.teamcode.Commands.Baskets.LowBasket;
 import org.firstinspires.ftc.teamcode.Commands.Chambers.LowChamber;
-import org.firstinspires.ftc.teamcode.Commands.Arm.MoveArm;
 import org.firstinspires.ftc.teamcode.Commands.Elevator.ModifyElevatorCommand;
 import org.firstinspires.ftc.teamcode.Commands.GroundGrab;
+import org.firstinspires.ftc.teamcode.Commands.RetractExtendCommand.ExtendArmElevator;
+import org.firstinspires.ftc.teamcode.Commands.RetractExtendCommand.RetractArmElevator;
+import org.firstinspires.ftc.teamcode.Commands.RetractExtendCommand.PositionsTable;
 import org.firstinspires.ftc.teamcode.Commands.StowAll;
 import org.firstinspires.ftc.teamcode.Subsystems.Chassis;
 import org.firstinspires.ftc.teamcode.Subsystems.Intake;
 import org.firstinspires.ftc.teamcode.Commands.Intake.MoveIntake;
 import org.firstinspires.ftc.teamcode.Subsystems.Arm;
 import org.firstinspires.ftc.teamcode.Subsystems.Elevator;
-import org.firstinspires.ftc.teamcode.Commands.Elevator.ElevatorPositions;
-
 import com.arcrobotics.ftclib.command.CommandScheduler;
 import com.arcrobotics.ftclib.geometry.Pose2d;
 import com.arcrobotics.ftclib.geometry.Rotation2d;
@@ -31,12 +31,10 @@ import org.firstinspires.ftc.teamcode.Commands.Drive;
 @TeleOp
 public class MainSystem extends LinearOpMode {
 
-    //private GroundMoveIntake groundMoveIntake;
-    //private double adjustmentValue = 0.005;
     private ModifyArmCommand modifyArmCommand;
     private ModifyElevatorCommand modifyElevatorCommand;
 
-
+    PositionsTable positionsTable;
 
     @Override
     public void runOpMode(){
@@ -94,42 +92,16 @@ public class MainSystem extends LinearOpMode {
             Button operatorButtonX = operator.getGamepadButton(GamepadKeys.Button.X);
             operatorButtonX.whenPressed(new LowChamber(arm, elevator));
 
-
-
-            //STOW ALL
+            // STOW ALL
             Button operatorRightBumper = operator.getGamepadButton(GamepadKeys.Button.RIGHT_BUMPER);
             operatorRightBumper.whenPressed(new StowAll(arm, elevator));
 
-        /* -- GROUNDMOVEINTAKE COMMAND -- */
-        /*Button driverButtonA = driver.getGamepadButton(GamepadKeys.Button.A);
-        driverButtonA.whenPressed(() -> {
-            if (groundMoveIntake != null) {
-                CommandScheduler.getInstance().cancel(groundMoveIntake);
-            }
-            groundMoveIntake = new GroundMoveIntake(arm, elevator, adjustmentValue);
-            groundMoveIntake.schedule();
-        });
+            // RETRACT EXTEND COMMAND
+            Button operatorDPadUp = operator.getGamepadButton(GamepadKeys.Button.DPAD_UP);
+            operatorDPadUp.whenPressed(new ExtendArmElevator(arm, elevator, positionsTable ));
 
-        // Cancel GroundMoveIntake
-        Button driverButtonY = driver.getGamepadButton(GamepadKeys.Button.Y);
-        driverButtonY.whenPressed(() -> {
-            CommandScheduler.getInstance().cancel(groundMoveIntake);
-            telemetry.addData("Status", "GroundMoveIntake Cancelled");
-            telemetry.update();
-        });
-
-        // Adjust the adjustmentValue dynamically
-        driver.getGamepadButton(GamepadKeys.Button.DPAD_UP).whenPressed(() -> {
-            adjustmentValue += 0.001;
-            telemetry.addData("Adjustment Increased", adjustmentValue);
-            telemetry.update();
-        });
-
-        driver.getGamepadButton(GamepadKeys.Button.DPAD_DOWN).whenPressed(() -> {
-            adjustmentValue -= 0.001;
-            telemetry.addData("Adjustment Decreased", adjustmentValue);
-            telemetry.update();
-        });*/
+            Button operatorDPadDown = operator.getGamepadButton(GamepadKeys.Button.DPAD_DOWN);
+            operatorDPadDown.whenPressed(new RetractArmElevator(arm, elevator, positionsTable ));
 
         waitForStart();
             chassis.reset(new Pose2d(0,0, Rotation2d.fromDegrees(0)));
