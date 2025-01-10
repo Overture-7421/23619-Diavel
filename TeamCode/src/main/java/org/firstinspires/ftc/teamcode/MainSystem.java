@@ -33,7 +33,6 @@ public class MainSystem extends LinearOpMode {
 
     private ModifyArmCommand modifyArmCommand;
     private ModifyElevatorCommand modifyElevatorCommand;
-
     PositionsTable positionsTable;
 
     @Override
