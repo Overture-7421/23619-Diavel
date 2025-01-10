@@ -22,7 +22,7 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 //@Config
 public class Arm extends SubsystemBase {
 
-    TouchSensor arm_touch;
+    //TouchSensor arm_touch;
 
     private final DcMotorEx motor;
     private final PIDController armPID;
@@ -38,7 +38,7 @@ public class Arm extends SubsystemBase {
         //FtcDashboard dashboard = FtcDashboard.getInstance();
         //telemetry = dashboard.getTelemetry();
         motor = (DcMotorEx) hardwareMap.get(DcMotor.class, "arm_Motor");
-        arm_touch = hardwareMap.get(TouchSensor.class, "arm_touch");
+        //arm_touch = hardwareMap.get(TouchSensor.class, "arm_touch");
 
         armPID = new PIDController(0.044, 0.0, 0.0);
 
@@ -65,19 +65,22 @@ public class Arm extends SubsystemBase {
 
     }
 
-    public boolean isTouchPressed() {
+    /*public boolean isTouchPressed() {
         return arm_touch.isPressed();
-    }
+    }*/
 
     @Override
     public void periodic() {
-        // Check if the touch sensor is pressed
-        if (arm_touch.isPressed()) {
-            motor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            motor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        /*long lastCheckTime = System.currentTimeMillis();
 
-            target = -OFFSET;
-        }
+        if (System.currentTimeMillis() - lastCheckTime >= 1000) {
+            if (arm_touch.isPressed()) {
+                motor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+                motor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+            }
+
+
+        }*/
 
         double motorOutput = armPID.calculate(getPosition(), target);
         motor.setPower(motorOutput + armFeedForward(getPosition()));

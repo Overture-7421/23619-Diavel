@@ -16,13 +16,13 @@ public class TurnToAngle extends CommandBase {
         this.chassis = chassis;
         this.targetHeading = targetHeading;
 
-        pidController = new ProfiledPIDController(0.099, 0.0, 0, new TrapezoidProfile.Constraints(10, 10));
+        pidController = new ProfiledPIDController(0.0995, 0.0, 0, new TrapezoidProfile.Constraints(50, 30));
         addRequirements(chassis);
     }
 
     @Override
     public void initialize() {
-        pidController.setTolerance(0);
+        pidController.setTolerance(2.5);
         pidController.enableContinuousInput(-180.0, 180.0);
 
         double targetDegrees = targetHeading.getDegrees();
@@ -49,6 +49,6 @@ public class TurnToAngle extends CommandBase {
     public boolean isFinished(){
         double currentDegrees = chassis.getPose().getRotation().getDegrees();
         double targetDegrees = targetHeading.getDegrees();
-        return Math.abs(targetDegrees - currentDegrees) < 1;
+        return Math.abs(targetDegrees - currentDegrees) < 2.5;
     }
 }

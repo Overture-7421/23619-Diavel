@@ -28,8 +28,8 @@ public class Chassis extends SubsystemBase {
         left_DriveTrain = (DcMotorEx) hardwareMap.get(DcMotor.class,"left_Drive");
         right_DriveTrain = (DcMotorEx) hardwareMap.get(DcMotor.class, "right_Drive");
 
-        left_DriveTrain.setDirection(DcMotorEx.Direction.FORWARD);
-        right_DriveTrain.setDirection(DcMotorEx.Direction.REVERSE);
+        left_DriveTrain.setDirection(DcMotorEx.Direction.REVERSE);
+        right_DriveTrain.setDirection(DcMotorEx.Direction.FORWARD);
 
         differentialDriveOdometry = new DifferentialDriveOdometry(new Rotation2d());
         imu = hardwareMap.get(IMU.class, "imu");
@@ -46,10 +46,10 @@ public class Chassis extends SubsystemBase {
 
     }
     public double leftDistance() {
-      return (-(left_DriveTrain.getCurrentPosition() / TICKS_PER_METER) * TRACK_WIDTH * Math.PI) / REDUCTION;
+      return ((left_DriveTrain.getCurrentPosition() / TICKS_PER_METER) * TRACK_WIDTH * Math.PI) / REDUCTION;
     }
     public double rightDistance() {
-        return (-(right_DriveTrain.getCurrentPosition() / TICKS_PER_METER) * TRACK_WIDTH * Math.PI) / REDUCTION;
+        return ((right_DriveTrain.getCurrentPosition() / TICKS_PER_METER) * TRACK_WIDTH * Math.PI) / REDUCTION;
     }
 
     public void reset(Pose2d pose2d){
