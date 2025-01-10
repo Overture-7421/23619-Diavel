@@ -65,19 +65,24 @@ public class Arm extends SubsystemBase {
 
     }
 
-
+    /*public boolean isTouchPressed() {
+        return arm_touch.isPressed();
+    }*/
 
     @Override
     public void periodic() {
-        /*if (arm_touch.isPressed()) {
-            motor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            motor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        /*long lastCheckTime = System.currentTimeMillis();
 
-            target = -OFFSET;
-        }*/
+        if (System.currentTimeMillis() - lastCheckTime >= 1000) {
+            if (arm_touch.isPressed()) {
+                motor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+                motor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+            }
+
 
         double motorOutput = armPID.calculate(getPosition(), target);
         motor.setPower(motorOutput + armFeedForward(getPosition()));
+
         /*telemetry.addData("Arm Output", motorOutput);
         telemetry.addData("Arm Position", getPosition());
         telemetry.addData("Arm Target", target);*/

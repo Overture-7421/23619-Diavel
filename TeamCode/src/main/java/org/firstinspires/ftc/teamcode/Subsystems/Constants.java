@@ -5,8 +5,8 @@ public final class Constants {
 
     public static class Arm {
         /* ARM POSITIONS */
-            public static final double ARM_STOW = -42;
-            public static final double ARM_GROUNDGRAB = 44;
+            public static final double ARM_STOW = -40;
+            public static final double ARM_GROUNDGRAB = -34;
             public static final double ARM_CLIMB = 50; /* PENDING TEST */
 
             // BASKETS
@@ -21,7 +21,7 @@ public final class Constants {
     public static class Elevator {
         /* ELEVATOR POSITIONS */
             public static final double ELEVATOR_STOW = 0;
-            public static final double ELEVATOR_GROUNDGRAB = 10;
+            public static final double ELEVATOR_GROUNDGRAB = 29;
             public static final double ELEVATOR_CLIMB = 50; /* PENDING TEST */
 
             // BASKETS

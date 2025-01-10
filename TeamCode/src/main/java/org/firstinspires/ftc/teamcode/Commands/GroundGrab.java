@@ -12,8 +12,8 @@ public class GroundGrab extends SequentialCommandGroup {
 
     public  GroundGrab(Arm arm, Elevator elevator){
         addCommands(
-                new MoveArm(arm, Constants.Arm.ARM_GROUNDGRAB).withTimeout(300),
-                new ElevatorPositions(elevator, Constants.Elevator.ELEVATOR_GROUNDGRAB).withTimeout(300)
+                new MoveArm(arm, Constants.Arm.ARM_GROUNDGRAB).withTimeout(500),
+                new ElevatorPositions(elevator, Constants.Elevator.ELEVATOR_GROUNDGRAB).withTimeout(1500)
         );
     }
 
