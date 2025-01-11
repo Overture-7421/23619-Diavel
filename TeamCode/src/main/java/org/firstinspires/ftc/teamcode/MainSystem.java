@@ -1,10 +1,12 @@
 package org.firstinspires.ftc.teamcode;
 
 import org.firstinspires.ftc.teamcode.Commands.Arm.ModifyArmCommand;
+import org.firstinspires.ftc.teamcode.Commands.Arm.MoveArm;
 import org.firstinspires.ftc.teamcode.Commands.Baskets.HighBasket;
 import org.firstinspires.ftc.teamcode.Commands.Chambers.HighChamber;
 import org.firstinspires.ftc.teamcode.Commands.Baskets.LowBasket;
 import org.firstinspires.ftc.teamcode.Commands.Chambers.LowChamber;
+import org.firstinspires.ftc.teamcode.Commands.Elevator.ElevatorPositions;
 import org.firstinspires.ftc.teamcode.Commands.Elevator.ModifyElevatorCommand;
 import org.firstinspires.ftc.teamcode.Commands.GroundGrab;
 import org.firstinspires.ftc.teamcode.Commands.RetractExtendCommand.ExtendArmElevator;
@@ -24,6 +26,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.arcrobotics.ftclib.command.button.Button;
+import org.firstinspires.ftc.teamcode.Commands.Index;
 
 import org.firstinspires.ftc.teamcode.Commands.Drive;
 
@@ -31,11 +34,14 @@ import org.firstinspires.ftc.teamcode.Commands.Drive;
 @TeleOp
 public class MainSystem extends LinearOpMode {
 
+    //esto no va aqui, pero bueo
+
+
     private ModifyArmCommand modifyArmCommand;
     private ModifyElevatorCommand modifyElevatorCommand;
+    public PositionsTable positionsTable = new PositionsTable();
 
-    PositionsTable positionsTable;
-
+    public static final Index index = new Index();
     @Override
     public void runOpMode(){
     //CommandScheduler.getInstance().cancelAll();
@@ -97,11 +103,29 @@ public class MainSystem extends LinearOpMode {
             operatorRightBumper.whenPressed(new StowAll(arm, elevator));
 
             // RETRACT EXTEND COMMAND
-            Button operatorDPadUp = operator.getGamepadButton(GamepadKeys.Button.DPAD_UP);
-            operatorDPadUp.whenPressed(new ExtendArmElevator(arm, elevator, positionsTable ));
+           //Button operatorDPadUp = operator.getGamepadButton(GamepadKeys.Button.DPAD_UP);
+/*            positionsTable.Index= positionsTable.Index + 1;
+            int newIndex = positionsTable.Index*/
 
-            Button operatorDPadDown = operator.getGamepadButton(GamepadKeys.Button.DPAD_DOWN);
-            operatorDPadDown.whenPressed(new RetractArmElevator(arm, elevator, positionsTable ));
+        Button operatorDPadUp = operator.getGamepadButton(GamepadKeys.Button.DPAD_UP);
+        operatorDPadUp.whenPressed(() -> {
+                    index.setIndex(index.getIndexValue()+1);
+                    if (index.getIndexValue() >= 44) {
+                        index.setIndex(43);
+                    }
+                });
+        /*Esto si funciona*/
+        operatorDPadUp.whenPressed(new MoveArm( arm, positionsTable.getArmTarget(index.getIndexValue())).withTimeout(500));
+        operatorDPadUp.whenPressed(new ElevatorPositions( elevator, positionsTable.getElevatorTarget(index.getIndexValue())).withTimeout(500));
+
+        Button operatorDPadDown = operator.getGamepadButton(GamepadKeys.Button.DPAD_DOWN);
+        operatorDPadDown.whenPressed(() -> {
+            index.setIndex(index.getIndexValue()-1);
+            if (index.getIndexValue() < 0) {
+                index.setIndex(0);
+            }
+        });
+        operatorDPadDown.whenPressed(new ExtendArmElevator(arm,elevator,positionsTable))  ;
 
         waitForStart();
             chassis.reset(new Pose2d(0,0, Rotation2d.fromDegrees(0)));
@@ -129,6 +153,9 @@ public class MainSystem extends LinearOpMode {
                     telemetry.addLine("--- Subsystem Telemetry ---");
                     telemetry.addData("Elevator_Distance", elevator.getHeight());
                     telemetry.addData("Arm Position", arm.getPosition());
+                    telemetry.addData("Index", index.getIndexValue());
+                telemetry.addData("ElevatorTarget",  positionsTable.getElevatorTarget(index.getIndexValue()));
+
 
                 // -- UPDATE TELEMETRY -- //
                     telemetry.update();
