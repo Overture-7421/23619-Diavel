@@ -16,9 +16,8 @@ public class RetractArmElevator extends SequentialCommandGroup {
         addCommands(
 
 
-                new MoveArm(arm, positionsTable.getElevatorTarget(Index.getIndexValue())).withTimeout(1000),
-                new WaitCommand(500),
-                new ElevatorPositions(elevator, positionsTable.getArmTarget(Index.getIndexValue())).withTimeout(1000)
+                new MoveArm(arm, positionsTable.getArmTarget(Index.getIndexValue())).withTimeout(300),
+                new ElevatorPositions(elevator, positionsTable.getElevatorTarget(Index.getIndexValue())).withTimeout(300)
               );
     }
 }

@@ -2,12 +2,12 @@ package org.firstinspires.ftc.teamcode.Commands;
 
 public class Index {
 
-    int index = 24;
-    static public int getIndexValue(){
+    static int index = 35;
+    public static int getIndexValue(){
          return index;
     }
 
-    public void setIndex(int i){
+    public static void setIndex(int i){
         index= i;
     }
 }

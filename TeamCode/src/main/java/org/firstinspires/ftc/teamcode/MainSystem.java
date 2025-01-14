@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
+import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.telemetry;
+
 import org.firstinspires.ftc.teamcode.Commands.Arm.ModifyArmCommand;
 import org.firstinspires.ftc.teamcode.Commands.Arm.MoveArm;
 import org.firstinspires.ftc.teamcode.Commands.Baskets.HighBasket;
@@ -34,14 +36,12 @@ import org.firstinspires.ftc.teamcode.Commands.Drive;
 @TeleOp
 public class MainSystem extends LinearOpMode {
 
-    //esto no va aqui, pero bueo
 
 
     private ModifyArmCommand modifyArmCommand;
     private ModifyElevatorCommand modifyElevatorCommand;
     public PositionsTable positionsTable = new PositionsTable();
 
-    public static final Index index = new Index();
     @Override
     public void runOpMode(){
     //CommandScheduler.getInstance().cancelAll();
@@ -109,23 +109,21 @@ public class MainSystem extends LinearOpMode {
 
         Button operatorDPadUp = operator.getGamepadButton(GamepadKeys.Button.DPAD_UP);
         operatorDPadUp.whenPressed(() -> {
-                    index.setIndex(index.getIndexValue()+1);
-                    if (index.getIndexValue() >= 44) {
-                        index.setIndex(43);
+                    if (Index.getIndexValue() >= 44) {
+                        Index.setIndex(43);
                     }
                 });
         /*Esto si funciona*/
-        operatorDPadUp.whenPressed(new MoveArm( arm, positionsTable.getArmTarget(index.getIndexValue())).withTimeout(500));
-        operatorDPadUp.whenPressed(new ElevatorPositions( elevator, positionsTable.getElevatorTarget(index.getIndexValue())).withTimeout(500));
+        operatorDPadUp.whenPressed(new ExtendArmElevator(arm, elevator,positionsTable));
 
         Button operatorDPadDown = operator.getGamepadButton(GamepadKeys.Button.DPAD_DOWN);
         operatorDPadDown.whenPressed(() -> {
-            index.setIndex(index.getIndexValue()-1);
-            if (index.getIndexValue() < 0) {
-                index.setIndex(0);
+
+            if (Index.getIndexValue() < 0) {
+                Index.setIndex(0);
             }
         });
-        operatorDPadDown.whenPressed(new ExtendArmElevator(arm,elevator,positionsTable))  ;
+        operatorDPadDown.whenPressed(new RetractArmElevator(arm,elevator,positionsTable))  ;
 
         waitForStart();
             chassis.reset(new Pose2d(0,0, Rotation2d.fromDegrees(0)));
@@ -153,8 +151,11 @@ public class MainSystem extends LinearOpMode {
                     telemetry.addLine("--- Subsystem Telemetry ---");
                     telemetry.addData("Elevator_Distance", elevator.getHeight());
                     telemetry.addData("Arm Position", arm.getPosition());
-                    telemetry.addData("Index", index.getIndexValue());
-                telemetry.addData("ElevatorTarget",  positionsTable.getElevatorTarget(index.getIndexValue()));
+                    telemetry.addData("Index", Index.getIndexValue());
+
+                telemetry.addData("ArmTarget",  positionsTable.getArmTarget(Index.getIndexValue()));
+                telemetry.addData("ElevatorTarget",  positionsTable.getElevatorTarget(Index.getIndexValue()));
+
 
 
                 // -- UPDATE TELEMETRY -- //
