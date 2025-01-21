@@ -1,21 +1,10 @@
 package org.firstinspires.ftc.teamcode.Autonomous;
 
-import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.hardwareMap;
-
 import com.arcrobotics.ftclib.command.CommandScheduler;
-import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-
-import org.firstinspires.ftc.teamcode.Commands.Baskets.HighBasket;
-import org.firstinspires.ftc.teamcode.Commands.GroundGrab;
-import org.firstinspires.ftc.teamcode.Commands.Intake.MoveIntake;
-import org.firstinspires.ftc.teamcode.Commands.StowAll;
-import org.firstinspires.ftc.teamcode.Subsystems.Arm;
-import org.firstinspires.ftc.teamcode.Subsystems.Chassis;
-import com.arcrobotics.ftclib.command.CommandScheduler;
+import com.arcrobotics.ftclib.command.ParallelCommandGroup;
 import com.arcrobotics.ftclib.command.RamseteCommand;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.command.WaitCommand;
-import com.arcrobotics.ftclib.command.ParallelCommandGroup;
 import com.arcrobotics.ftclib.geometry.Pose2d;
 import com.arcrobotics.ftclib.geometry.Rotation2d;
 import com.arcrobotics.ftclib.trajectory.Trajectory;
@@ -26,87 +15,83 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.Autonomous.AutonomousIndex.RamsetteCommand;
 import org.firstinspires.ftc.teamcode.Autonomous.AutonomousIndex.TurnToAngle;
+import org.firstinspires.ftc.teamcode.Commands.GroundGrab;
+import org.firstinspires.ftc.teamcode.Commands.Intake.MoveIntake;
+import org.firstinspires.ftc.teamcode.Commands.StowAll;
 import org.firstinspires.ftc.teamcode.Subsystems.Chassis;
 import org.firstinspires.ftc.teamcode.Subsystems.Elevator;
+import org.firstinspires.ftc.teamcode.Subsystems.Arm;
+import org.firstinspires.ftc.teamcode.Subsystems.Intake;
 import org.firstinspires.ftc.teamcode.Commands.Elevator.ElevatorPositions;
 import java.util.Arrays;
-import org.firstinspires.ftc.robotcore.
 
-
-import org.firstinspires.ftc.teamcode.Subsystems.Intake;
 
 @Autonomous
-public class AtonomousHighBasket extends LinearOpMode{
-    Chassis chassis;
-    Intake intake;
-    Arm arm;
-    Elevator elevator;
+public class AtonomousHighBasket extends LinearOpMode {
 
     @Override
-
     public void runOpMode() throws InterruptedException {
+
         CommandScheduler.getInstance().cancelAll();
         CommandScheduler.getInstance().reset();
 
-
-        chassis = new Chassis(hardwareMap);
-        intake = new Intake(hardwareMap);
-        arm = new Arm(hardwareMap);
-        elevator = new Elevator(hardwareMap);
-
-
-        TrajectoryConfig FORWARDConfig = new TrajectoryConfig(0.5, 0.2);
-        FORWARDConfig.setReversed(false);
-        Trajectory FORWARD = TrajectoryGenerator.generateTrajectory(Arrays.asList(
-                new Pose2d(0.0,0,Rotation2d.fromDegrees(0)),
-                new Pose2d(0.55,0.55,Rotation2d.fromDegrees(0))), FORWARDConfig
-        );
-
-        SequentialCommandGroup testCommandGroupFirst = new SequentialCommandGroup(
-             new TurnToAngle(chassis, Rotation2d.fromDegrees(-45)),
-                new RamsetteCommand(chassis, FORWARD),
-                new GroundGrab(arm, elevator)
-
-
-
-              /*  new RamsetteCommand(chassis, UP),
-                new HighBasket(arm, elevator),
-                new WaitCommand(1500),
-                new StowAll(arm, elevator),
-                new WaitCommand(1000),
-                new TurnToAngle(chassis, Rotation2d.fromDegrees(-90)),
-                new RamsetteCommand(chassis, RIGHT),
-                new GroundGrab(arm, elevator),
-                new WaitCommand(1000),
-                new StowAll(arm, elevator),
-                new WaitCommand(1500),
-                new TurnToAngle(chassis, Rotation2d.fromDegrees(180)),
-                new RamsetteCommand(chassis, getToSecondPosition),
-                new WaitCommand(500),
-                new TurnToAngle(chassis, Rotation2d.fromDegrees(90)),
-                new RamsetteCommand(chassis, getToStartingPosition)*/
-
-        );
-        ParallelCommandGroup takeFromGround = new ParallelCommandGroup(
-                new MoveIntake(intake, 1),
-                new StowAll(arm, elevator)
-        );
+        Chassis chassis = new Chassis(hardwareMap);
+        Elevator elevator= new Elevator(hardwareMap);
+        Arm arm = new Arm(hardwareMap);
+        Intake intake = new Intake(hardwareMap);
 
         TrajectoryConfig backwardConfig = new TrajectoryConfig(0.5, 0.2);
-        backwardConfig.setReversed(true);
-        Trajectory BACKWARD = TrajectoryGenerator.generateTrajectory(Arrays.asList(
-                new Pose2d(0.55,0.55,Rotation2d.fromDegrees(0)),
-                new Pose2d(0,0,Rotation2d.fromDegrees(0))), backwardConfig
+        backwardConfig.setReversed(false);
+        Trajectory First = TrajectoryGenerator.generateTrajectory(Arrays.asList(
+                new Pose2d(0.0,0,Rotation2d.fromDegrees(-45)),
+                new Pose2d(0.55,-0.55,Rotation2d.fromDegrees(-45))), backwardConfig
+        );
+        TrajectoryConfig SecondConfig = new TrajectoryConfig(0.5, 0.2);
+        SecondConfig.setReversed(true);
+        Trajectory Second  = TrajectoryGenerator.generateTrajectory(Arrays.asList(
+                new Pose2d(0.66,-0.66,Rotation2d.fromDegrees(-45)),
+                new Pose2d(0.1,-0.1,Rotation2d.fromDegrees(-45))), backwardConfig
+        );
+        TrajectoryConfig bitConfig = new TrajectoryConfig(0.5, 0.2);
+        bitConfig.setReversed(false);
+        Trajectory Bit = TrajectoryGenerator.generateTrajectory(Arrays.asList(
+                new Pose2d(0.55,-0.55,Rotation2d.fromDegrees(-45)),
+                new Pose2d(0.66,-0.66,Rotation2d.fromDegrees(-45))), backwardConfig
+        );
+        TrajectoryConfig ThirdConfig = new TrajectoryConfig(0.5, 0.2);
+        ThirdConfig.setReversed(true);
+        Trajectory Third  = TrajectoryGenerator.generateTrajectory(Arrays.asList(
+                new Pose2d(0.1,0.1,Rotation2d.fromDegrees(90)),
+                new Pose2d(0.1,2,Rotation2d.fromDegrees(90))), backwardConfig
         );
 
-        SequentialCommandGroup testCommandGroupSecond= new SequentialCommandGroup(
-                new RamsetteCommand(chassis, BACKWARD)
+        SequentialCommandGroup FirstCommandGroup = new SequentialCommandGroup(
 
-                );
+                new TurnToAngle (chassis, Rotation2d.fromDegrees(-45)),
+                new WaitCommand(1000),
+                new RamsetteCommand(chassis, First),
+                new GroundGrab(arm, elevator),
+                new WaitCommand(500),
+
+                new ParallelCommandGroup (
+                new RamsetteCommand(chassis, Bit),
+                new MoveIntake(intake, 1).withTimeout(3000)
+
+        ),
+                new MoveIntake(intake,0),
+                new StowAll(arm, elevator),
+                new RamsetteCommand(chassis, Second),
+                new WaitCommand(500),
+                new TurnToAngle(chassis,Rotation2d.fromDegrees(90)),
+                new RamsetteCommand(chassis, Third)
+
+        );
+
 
         waitForStart();
-        chassis.reset(FORWARD.getInitialPose());
-        CommandScheduler.getInstance().schedule(testCommandGroupFirst);
+        chassis.reset(new Pose2d());
+        CommandScheduler.getInstance().schedule(FirstCommandGroup);
+
         while (opModeIsActive ()){
             CommandScheduler.getInstance().run();
 
@@ -114,11 +99,11 @@ public class AtonomousHighBasket extends LinearOpMode{
             telemetry.addData("X", pose.getX());
             telemetry.addData("Y", pose.getY());
             telemetry.addData("Heading", pose.getRotation().getDegrees());
+
+            telemetry.addLine("--- Chassis Telemetry ---");
+            telemetry.addData("RightDistance", chassis.rightDistance());
+            telemetry.addData("LeftDistance", chassis.leftDistance());
             telemetry.update();
-
-
         }
-
     }
-
 }
