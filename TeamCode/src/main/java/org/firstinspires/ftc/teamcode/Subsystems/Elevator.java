@@ -24,7 +24,7 @@ public class Elevator extends SubsystemBase {
     private  double target = 0;
 
     public Elevator(HardwareMap hardwareMap) {
-        FtcDashboard dashboard = FtcDashboard.getInstance();
+        //FtcDashboard dashboard = FtcDashboard.getInstance();
         //telemetry = dashboard.getTelemetry();
         elevatorMotor = (DcMotorEx) hardwareMap.get(DcMotor.class, "elevator_Motor");
 

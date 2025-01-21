@@ -14,19 +14,9 @@ public class HighChamber extends SequentialCommandGroup {
 
     public HighChamber (Arm arm, Elevator elevator){
         addCommands(
-
-               /* new MoveArm(arm, Constants.Arm.ARM_HIGHCHAMBER),
-                new WaitCommand(5000), //tienes que pegar el chasis a la estructura
-                new ElevatorPositions(elevator, Constants.Elevator.ELEVATOR_HIGHCHAMBER),
-                new WaitCommand(5000),
-                new MoveArm(arm, 24),
-                new WaitCommand(5000),
-                new StowAll(arm, elevator)
-                */
-
                 new MoveArm(arm, Constants.Arm.ARM_HIGHCHAMBER).withTimeout(500),
                 new WaitCommand(2500),
-                new ElevatorPositions(elevator,20).withTimeout(400),
+                new ElevatorPositions(elevator,15).withTimeout(400),
                 new WaitCommand(1500),
                 new MoveArm(arm, Constants.Arm.ARM_HIGHCHAMBER-15).withTimeout(500),
                 new WaitCommand(1000),
