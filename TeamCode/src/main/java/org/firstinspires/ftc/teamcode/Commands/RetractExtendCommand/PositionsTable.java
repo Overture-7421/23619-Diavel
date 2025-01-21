@@ -1,8 +1,8 @@
 package org.firstinspires.ftc.teamcode.Commands.RetractExtendCommand;
-
+import org.firstinspires.ftc.teamcode.Commands.Index;
 public class PositionsTable {
 
-    public int Index=35;
+
     double[][] data = {
             //index     Elevator   Arm
             {0, 12.17827457, 51.809},
@@ -53,14 +53,15 @@ public class PositionsTable {
 
     };
 
+
     public double getElevatorTarget(int i){
-        Index=i;
-        return data[Index][1];
+        Index.setIndex(i);
+        return data[Index.getIndexValue()][1];
     }
 
     public double getArmTarget(int j){
-        Index= j;
-        return -(data [Index][2]);
+        Index.setIndex(j);
+        return -(data[Index.getIndexValue()][2]);
     }
 
 

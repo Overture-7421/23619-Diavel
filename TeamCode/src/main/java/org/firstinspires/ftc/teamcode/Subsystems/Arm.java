@@ -78,7 +78,7 @@ public class Arm extends SubsystemBase {
                 motor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
                 motor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
             }
-
+*/
 
         double motorOutput = armPID.calculate(getPosition(), target);
         motor.setPower(motorOutput + armFeedForward(getPosition()));

@@ -52,6 +52,7 @@ public class TwoHighPieces extends LinearOpMode {
                 new Pose2d(0.4,0,Rotation2d.fromDegrees(0))), backwardConfig
         );
 
+
         TrajectoryConfig rotationLeftConfig = new TrajectoryConfig(0.5, 0.2);
         rotationLeftConfig.setReversed(true);
         Trajectory Left = TrajectoryGenerator.generateTrajectory(Arrays.asList(

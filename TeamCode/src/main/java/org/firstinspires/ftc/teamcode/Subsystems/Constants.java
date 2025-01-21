@@ -5,7 +5,7 @@ public final class Constants {
 
     public static class Arm {
         /* ARM POSITIONS */
-            public static final double ARM_STOW = -40;
+            public static final double ARM_STOW = -33;
             public static final double ARM_GROUNDGRAB = -34;
             public static final double ARM_CLIMB = 50; /* PENDING TEST */
 
