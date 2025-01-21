@@ -112,7 +112,8 @@ public class MainSystem extends LinearOpMode {
                         Index.setIndex(43);
                     }
                 });
-        /*Esto si funciona*/
+
+        /*Esto si funciona
         operatorDPadUp.whenPressed(new ExtendArmElevator(arm, elevator,positionsTable));
 
         Button operatorDPadDown = operator.getGamepadButton(GamepadKeys.Button.DPAD_DOWN);
@@ -122,7 +123,7 @@ public class MainSystem extends LinearOpMode {
                 Index.setIndex(0);
             }
         });
-        operatorDPadDown.whenPressed(new RetractArmElevator(arm,elevator,positionsTable))  ;
+        operatorDPadDown.whenPressed(new RetractArmElevator(arm,elevator,positionsTable)) ; */
 
         waitForStart();
             chassis.reset(new Pose2d(0,0, Rotation2d.fromDegrees(0)));
@@ -152,8 +153,8 @@ public class MainSystem extends LinearOpMode {
                     telemetry.addData("Arm Position", arm.getPosition());
                     telemetry.addData("Index", Index.getIndexValue());
 
-                telemetry.addData("ArmTarget",  positionsTable.getArmTarget(Index.getIndexValue()));
-                telemetry.addData("ElevatorTarget",  positionsTable.getElevatorTarget(Index.getIndexValue()));
+                    //telemetry.addData("ArmTarget",  positionsTable.getArmTarget(Index.getIndexValue()));
+                    //telemetry.addData("ElevatorTarget",  positionsTable.getElevatorTarget(Index.getIndexValue()));
 
 
 
