@@ -29,6 +29,7 @@ import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.arcrobotics.ftclib.command.button.Button;
 import org.firstinspires.ftc.teamcode.Commands.Index;
+import org.firstinspires.ftc.teamcode.Commands.Climber.Climb;
 
 import org.firstinspires.ftc.teamcode.Commands.Drive;
 
@@ -100,6 +101,10 @@ public class MainSystem extends LinearOpMode {
             // STOW ALL
             Button operatorRightBumper = operator.getGamepadButton(GamepadKeys.Button.RIGHT_BUMPER);
             operatorRightBumper.whenPressed(new StowAll(arm, elevator));
+
+            // STOW ALL
+             Button operatorLeftBumper = operator.getGamepadButton(GamepadKeys.Button.LEFT_BUMPER);
+            operatorLeftBumper.whenPressed(new Climb(arm, elevator));
 
             // RETRACT EXTEND COMMAND
            //Button operatorDPadUp = operator.getGamepadButton(GamepadKeys.Button.DPAD_UP);
