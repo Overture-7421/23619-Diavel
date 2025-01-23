@@ -89,7 +89,7 @@ public class MainSystem extends LinearOpMode {
             operatorButtonA.whenPressed(new LowBasket(arm, elevator));
 
             Button operatorButtonB = operator.getGamepadButton(GamepadKeys.Button.B);
-            operatorButtonB.whenPressed(new HighBasket(arm, elevator));
+            operatorButtonB.whenPressed(new HighBasket(intake, arm, elevator));
 
             // CHAMBERS
             Button operatorButtonY = operator.getGamepadButton(GamepadKeys.Button.Y);
