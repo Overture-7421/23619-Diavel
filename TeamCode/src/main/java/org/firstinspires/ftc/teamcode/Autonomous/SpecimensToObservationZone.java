@@ -12,8 +12,6 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.Autonomous.AutonomousIndex.RamsetteCommand;
 import org.firstinspires.ftc.teamcode.Autonomous.AutonomousIndex.TurnToAngle;
-import org.firstinspires.ftc.teamcode.Commands.GroundGrab;
-import org.firstinspires.ftc.teamcode.Commands.Intake.MoveIntake;
 import org.firstinspires.ftc.teamcode.Subsystems.Chassis;
 
 import java.util.Arrays;
@@ -25,7 +23,7 @@ import org.firstinspires.ftc.teamcode.Subsystems.Arm;
 * field and the observation zone for the human player to attach clips*/
 
 @Autonomous
-public class ThreeSpecimensToObservationZone extends LinearOpMode {
+public class SpecimensToObservationZone extends LinearOpMode {
     Chassis chassis;
     Intake intake;
     Arm arm;
