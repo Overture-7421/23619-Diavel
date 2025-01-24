@@ -23,7 +23,7 @@ import org.firstinspires.ftc.teamcode.Subsystems.Arm;
  one on the high basket and then parks.*/
 
 @Autonomous
-public class Samples extends LinearOpMode {
+public class SamplesToObservationZone extends LinearOpMode {
     Chassis chassis;
     Intake intake;
     Arm arm;
@@ -41,54 +41,93 @@ public class Samples extends LinearOpMode {
         elevator = new Elevator(hardwareMap);
 
         // TRAJECTORY CONFIGS
-        TrajectoryConfig forwardConfig = new TrajectoryConfig(2, 1);
+        TrajectoryConfig forwardConfig = new TrajectoryConfig(1, 0.5);
         forwardConfig.setReversed(false);
 
-        TrajectoryConfig reverseConfig = new TrajectoryConfig(2, 1);
+        TrajectoryConfig reverseConfig = new TrajectoryConfig(1, 0.5);
         reverseConfig.setReversed(true);
 
 
 
         Trajectory First = TrajectoryGenerator.generateTrajectory(Arrays.asList(
                 new Pose2d(0,0,Rotation2d.fromDegrees(0)),
-                new Pose2d(0.2,0,Rotation2d.fromDegrees(0))), forwardConfig
+                new Pose2d(0.19,0,Rotation2d.fromDegrees(0))), forwardConfig
         );
 
         Trajectory Second = TrajectoryGenerator.generateTrajectory(Arrays.asList(
-                new Pose2d(0.2,0,Rotation2d.fromDegrees(-35)),
-                new Pose2d(1,-0.59,Rotation2d.fromDegrees(-35))), forwardConfig
+                new Pose2d(0.19,0,Rotation2d.fromDegrees(-25)),
+                new Pose2d(1.36,-0.53,Rotation2d.fromDegrees(-25))), forwardConfig
         );
 
 
         Trajectory Third = TrajectoryGenerator.generateTrajectory(Arrays.asList(
-                new Pose2d(1,-0.59,Rotation2d.fromDegrees(0)),
-                new Pose2d(0.13,-0.6,Rotation2d.fromDegrees(0))), reverseConfig
+                new Pose2d(1.36,-0.53,Rotation2d.fromDegrees(0)),
+                new Pose2d(0.25,-0.6,Rotation2d.fromDegrees(0))), reverseConfig
         );
 
 
         Trajectory Fourth = TrajectoryGenerator.generateTrajectory(Arrays.asList(
-                new Pose2d(1,-0.59,Rotation2d.fromDegrees(-14)),
-                new Pose2d(0.85,-0.75,Rotation2d.fromDegrees(-14))), forwardConfig
+                new Pose2d(0.15,-0.6,Rotation2d.fromDegrees(0)),
+                new Pose2d(1.5,-0.6,Rotation2d.fromDegrees(0))), forwardConfig
         );
 
 
-        /*Trajectory Fifth = TrajectoryGenerator.generateTrajectory(Arrays.asList(
-                new Pose2d(0.85,-0.75,Rotation2d.fromDegrees(5)),
-                new Pose2d(0.15,-0.82,Rotation2d.fromDegrees(5))), reverseConfig
-        );*/
+        Trajectory Fifth = TrajectoryGenerator.generateTrajectory(Arrays.asList(
+                new Pose2d(1.5,-0.6,Rotation2d.fromDegrees(-45)),
+                new Pose2d(1.7,-0.8,Rotation2d.fromDegrees(-45))), reverseConfig
+        );
+
+        Trajectory Sixth = TrajectoryGenerator.generateTrajectory(Arrays.asList(
+                new Pose2d(1.5,-0.8,Rotation2d.fromDegrees(0)),
+                new Pose2d(0.25,-0.8,Rotation2d.fromDegrees(0))), forwardConfig
+        );
+
+        Trajectory Seventh = TrajectoryGenerator.generateTrajectory(Arrays.asList(
+                new Pose2d(0.25,-0.8,Rotation2d.fromDegrees(0)),
+                new Pose2d(1.46,-0.8,Rotation2d.fromDegrees(0))), reverseConfig
+        );
+
+
+        Trajectory Eighth = TrajectoryGenerator.generateTrajectory(Arrays.asList(
+                new Pose2d(1.46,-0.8,Rotation2d.fromDegrees(-90)),
+                new Pose2d(1.46,-1,Rotation2d.fromDegrees(-90))), reverseConfig
+        );
+
+
+        Trajectory Ninth = TrajectoryGenerator.generateTrajectory(Arrays.asList(
+                new Pose2d(1.46,-1,Rotation2d.fromDegrees(0)),
+                new Pose2d(0.25,-1,Rotation2d.fromDegrees(0))), reverseConfig
+        );
+
 
 
         SequentialCommandGroup testCommandGroup = new SequentialCommandGroup(
                 new RamsetteCommand(chassis, First),
-                new TurnToAngle(chassis, Rotation2d.fromDegrees(-35)),
-                new WaitCommand(1000),
+                new TurnToAngle(chassis, Rotation2d.fromDegrees(-25)),
+                new WaitCommand(500),
                 new RamsetteCommand(chassis, Second),
+                new WaitCommand(500),
                 new TurnToAngle(chassis, Rotation2d.fromDegrees(0)),
                 new RamsetteCommand(chassis, Third),
-                new TurnToAngle(chassis, Rotation2d.fromDegrees(-14)),
-                new RamsetteCommand(chassis, Fourth)
-                /*new TurnToAngle(chassis, Rotation2d.fromDegrees(5)),
-                new RamsetteCommand(chassis, Fifth)*/
+                new WaitCommand(500),
+                new TurnToAngle(chassis, Rotation2d.fromDegrees(0)),
+                new RamsetteCommand(chassis, Fourth),
+                new WaitCommand(500),
+                new TurnToAngle(chassis, Rotation2d.fromDegrees(-45)),
+                new RamsetteCommand(chassis, Fifth)/*,
+                new WaitCommand(500),
+                new TurnToAngle(chassis, Rotation2d.fromDegrees(0)),
+                new RamsetteCommand(chassis, Sixth),
+                new WaitCommand(500),
+                new TurnToAngle(chassis, Rotation2d.fromDegrees(0)),
+                new RamsetteCommand(chassis, Seventh),
+                new WaitCommand(500),
+                new TurnToAngle(chassis, Rotation2d.fromDegrees(-90)),
+                new RamsetteCommand(chassis, Eighth),
+                new WaitCommand(500),
+                new TurnToAngle(chassis, Rotation2d.fromDegrees(0)),
+                new RamsetteCommand(chassis, Ninth)
+                */
 
         );
 

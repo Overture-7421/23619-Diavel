@@ -103,22 +103,28 @@ public class MainSystem extends LinearOpMode {
             operatorRightBumper.whenPressed(new StowAll(arm, elevator));
 
             // STOW ALL
-             Button operatorLeftBumper = operator.getGamepadButton(GamepadKeys.Button.LEFT_BUMPER);
+            Button operatorLeftBumper = operator.getGamepadButton(GamepadKeys.Button.LEFT_BUMPER);
             operatorLeftBumper.whenPressed(new Climb(arm, elevator));
 
+
+
+
+            /*
             // RETRACT EXTEND COMMAND
-           //Button operatorDPadUp = operator.getGamepadButton(GamepadKeys.Button.DPAD_UP);
-/*            positionsTable.Index= positionsTable.Index + 1;
-            int newIndex = positionsTable.Index*/
+            Button operatorDPadUp = operator.getGamepadButton(GamepadKeys.Button.DPAD_UP);
+            positionsTable.Index= positionsTable.Index + 1;
+            int newIndex = positionsTable.Index
 
-        Button operatorDPadUp = operator.getGamepadButton(GamepadKeys.Button.DPAD_UP);
-        operatorDPadUp.whenPressed(() -> {
-                    if (Index.getIndexValue() >= 44) {
-                        Index.setIndex(43);
-                    }
-                });
+            Button operatorDPadUp = operator.getGamepadButton(GamepadKeys.Button.DPAD_UP);
+            operatorDPadUp.whenPressed(() -> {
+                        if (Index.getIndexValue() >= 44) {
+                            Index.setIndex(43);
+                        }
+                    });
 
-        /*Esto si funciona
+            */
+
+        /*
         operatorDPadUp.whenPressed(new ExtendArmElevator(arm, elevator,positionsTable));
 
         Button operatorDPadDown = operator.getGamepadButton(GamepadKeys.Button.DPAD_DOWN);
