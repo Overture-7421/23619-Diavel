@@ -11,9 +11,6 @@ import org.firstinspires.ftc.teamcode.Commands.Chambers.LowChamber;
 import org.firstinspires.ftc.teamcode.Commands.Elevator.ElevatorPositions;
 import org.firstinspires.ftc.teamcode.Commands.Elevator.ModifyElevatorCommand;
 import org.firstinspires.ftc.teamcode.Commands.GroundGrab;
-import org.firstinspires.ftc.teamcode.Commands.RetractExtendCommand.ExtendArmElevator;
-import org.firstinspires.ftc.teamcode.Commands.RetractExtendCommand.RetractArmElevator;
-import org.firstinspires.ftc.teamcode.Commands.RetractExtendCommand.PositionsTable;
 import org.firstinspires.ftc.teamcode.Commands.StowAll;
 import org.firstinspires.ftc.teamcode.Subsystems.Chassis;
 import org.firstinspires.ftc.teamcode.Subsystems.Intake;
@@ -106,29 +103,6 @@ public class MainSystem extends LinearOpMode {
              Button operatorLeftBumper = operator.getGamepadButton(GamepadKeys.Button.LEFT_BUMPER);
             operatorLeftBumper.whenPressed(new Climb(arm, elevator));
 
-            // RETRACT EXTEND COMMAND
-           //Button operatorDPadUp = operator.getGamepadButton(GamepadKeys.Button.DPAD_UP);
-/*            positionsTable.Index= positionsTable.Index + 1;
-            int newIndex = positionsTable.Index*/
-
-        Button operatorDPadUp = operator.getGamepadButton(GamepadKeys.Button.DPAD_UP);
-        operatorDPadUp.whenPressed(() -> {
-                    if (Index.getIndexValue() >= 44) {
-                        Index.setIndex(43);
-                    }
-                });
-
-        /*Esto si funciona
-        operatorDPadUp.whenPressed(new ExtendArmElevator(arm, elevator,positionsTable));
-
-        Button operatorDPadDown = operator.getGamepadButton(GamepadKeys.Button.DPAD_DOWN);
-        operatorDPadDown.whenPressed(() -> {
-
-            if (Index.getIndexValue() < 0) {
-                Index.setIndex(0);
-            }
-        });
-        operatorDPadDown.whenPressed(new RetractArmElevator(arm,elevator,positionsTable)) ; */
 
         waitForStart();
             chassis.reset(new Pose2d(0,0, Rotation2d.fromDegrees(0)));
