@@ -14,7 +14,7 @@ import org.firstinspires.ftc.teamcode.Subsystems.Intake;
 
 public class HighBasket extends SequentialCommandGroup {
 
-    public HighBasket (Intake intake, Arm arm, Elevator elevator){
+    public HighBasket (Arm arm, Elevator elevator){
 
         addCommands(
                 new MoveArm(arm, Constants.Arm.ARM_HIGHBASKET).withTimeout(500),
