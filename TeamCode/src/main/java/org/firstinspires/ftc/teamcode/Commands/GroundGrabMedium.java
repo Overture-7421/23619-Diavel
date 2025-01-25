@@ -8,12 +8,12 @@ import org.firstinspires.ftc.teamcode.Subsystems.Elevator;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 
 
-public class GroundGrab extends SequentialCommandGroup {
+public class GroundGrabMedium extends SequentialCommandGroup {
 
-    public  GroundGrab(Arm arm, Elevator elevator){
+    public GroundGrabMedium(Arm arm, Elevator elevator){
         addCommands(
-                new MoveArm(arm, Constants.Arm.ARM_GROUNDGRAB).withTimeout(500),
-                new ElevatorPositions(elevator, Constants.Elevator.ELEVATOR_GROUNDGRAB).withTimeout(1500)
+                new MoveArm(arm, Constants.Arm.ARM_MEDIUM_GROUNDGRAB).withTimeout(500),
+                new ElevatorPositions(elevator, Constants.Elevator.ELEVATOR_MEDIUM_GROUNDGRAB).withTimeout(1500)
         );
     }
 

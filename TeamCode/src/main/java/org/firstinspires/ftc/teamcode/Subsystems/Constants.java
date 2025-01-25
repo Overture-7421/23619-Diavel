@@ -6,7 +6,19 @@ public final class Constants {
     public static class Arm {
         /* ARM POSITIONS */
             public static final double ARM_STOW = -33;
-            public static final double ARM_GROUNDGRAB = -34;
+
+            // GROUND GRAB
+                // SHORT GROUND GRAB
+                public static final double ARM_SHORT_GROUNDGRAB = -33;
+
+                // MEDIUM GROUND GRAB
+                public static final double ARM_MEDIUM_GROUNDGRAB = -28;
+
+                // LONG GROUND GRAB
+                public static final double ARM_LONG_GROUNDGRAB = -23;
+
+
+
             public static final double ARM_CLIMB = 75; /* PENDING TEST */
 
             // BASKETS
@@ -21,7 +33,19 @@ public final class Constants {
     public static class Elevator {
         /* ELEVATOR POSITIONS */
             public static final double ELEVATOR_STOW = 0;
-            public static final double ELEVATOR_GROUNDGRAB = 29;
+
+            //ELEVATOR GROUND GRAB
+
+                //ELEVATOR SHORT GROUND GRAB
+                public static final double ELEVATOR_SHORT_GROUNDGRAB = 31;
+
+                //ELEVATOR MEDIUM GROUND GRAB
+                public static final double ELEVATOR_MEDIUM_GROUNDGRAB =  40;
+
+                //ELEVATOR LONG GROUND GRAB
+                public static final double ELEVATOR_LONG_GROUNDGRAB = 49;
+
+
             public static final double ELEVATOR_CLIMB = 5; /* PENDING TEST */
 
             // BASKETS

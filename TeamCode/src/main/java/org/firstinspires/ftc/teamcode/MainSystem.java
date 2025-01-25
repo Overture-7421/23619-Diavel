@@ -1,16 +1,15 @@
 package org.firstinspires.ftc.teamcode;
 
-import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.telemetry;
 
-import org.firstinspires.ftc.teamcode.Commands.Arm.ModifyArmCommand;
-import org.firstinspires.ftc.teamcode.Commands.Arm.MoveArm;
+//import org.firstinspires.ftc.teamcode.Commands.Arm.ModifyArmCommand;
 import org.firstinspires.ftc.teamcode.Commands.Baskets.HighBasket;
 import org.firstinspires.ftc.teamcode.Commands.Chambers.HighChamber;
 import org.firstinspires.ftc.teamcode.Commands.Baskets.LowBasket;
 import org.firstinspires.ftc.teamcode.Commands.Chambers.LowChamber;
-import org.firstinspires.ftc.teamcode.Commands.Elevator.ElevatorPositions;
-import org.firstinspires.ftc.teamcode.Commands.Elevator.ModifyElevatorCommand;
-import org.firstinspires.ftc.teamcode.Commands.GroundGrab;
+//import org.firstinspires.ftc.teamcode.Commands.Elevator.ModifyElevatorCommand;
+import org.firstinspires.ftc.teamcode.Commands.GroundGrabLong;
+import org.firstinspires.ftc.teamcode.Commands.GroundGrabMedium;
+import org.firstinspires.ftc.teamcode.Commands.GroundGrabShort;
 import org.firstinspires.ftc.teamcode.Commands.StowAll;
 import org.firstinspires.ftc.teamcode.Subsystems.Chassis;
 import org.firstinspires.ftc.teamcode.Subsystems.Intake;
@@ -34,14 +33,11 @@ import org.firstinspires.ftc.teamcode.Commands.Drive;
 @TeleOp
 public class MainSystem extends LinearOpMode {
 
-    private ModifyArmCommand modifyArmCommand;
-    private ModifyElevatorCommand modifyElevatorCommand;
+    //private ModifyArmCommand modifyArmCommand;
+    //private ModifyElevatorCommand modifyElevatorCommand;
 
     @Override
     public void runOpMode(){
-    //CommandScheduler.getInstance().cancelAll();
-    //CommandScheduler.getInstance().reset();
-    //telemetry = new MultipleTelemetry(FtcDashboard.getInstance().getTelemetry());
 
     /* SUBSYSTEM DECLARATION */
     Chassis chassis = new Chassis(hardwareMap);
@@ -66,17 +62,29 @@ public class MainSystem extends LinearOpMode {
         driverButtonB.whenHeld(new MoveIntake(intake,-1.0));
         driverButtonB.whenReleased(new MoveIntake(intake,0.0));
 
-        Button driverButtonRigtBumper= driver.getGamepadButton(GamepadKeys.Button.RIGHT_BUMPER);
-        driverButtonRigtBumper.whenHeld(new GroundGrab(arm, elevator));
-        driverButtonRigtBumper.whenReleased(new GroundGrab(arm, elevator));
+        // GROUND GRAB COMMANDS
+            // SHORT GROUND GRAB
+            Button driverDpadDown = driver.getGamepadButton(GamepadKeys.Button.DPAD_DOWN);
+            driverDpadDown.whenHeld(new GroundGrabShort(arm, elevator));
+            driverDpadDown.whenReleased(new GroundGrabShort(arm, elevator));
+
+            // MEDIUM GROUND GRAB
+            Button driverDpadRight = driver.getGamepadButton(GamepadKeys.Button.DPAD_RIGHT);
+            driverDpadRight.whenHeld(new GroundGrabMedium(arm, elevator));
+            driverDpadRight.whenReleased(new GroundGrabMedium(arm, elevator));
+
+            // LONG GROUND GRAB
+            Button driverDpadUp = driver.getGamepadButton(GamepadKeys.Button.DPAD_UP);
+            driverDpadUp.whenHeld(new GroundGrabLong(arm, elevator));
+            driverDpadUp.whenReleased(new GroundGrabLong(arm, elevator));
 
         // MANUAL ARM
-        modifyArmCommand = new ModifyArmCommand(arm, gamepad1);
-        arm.setDefaultCommand(modifyArmCommand);
+        //modifyArmCommand = new ModifyArmCommand(arm, gamepad2);
+        //arm.setDefaultCommand(modifyArmCommand);
 
         // MANUAL ELEVATOR
-        modifyElevatorCommand = new ModifyElevatorCommand(elevator, gamepad1);
-        elevator.setDefaultCommand(modifyElevatorCommand);
+        //modifyElevatorCommand = new ModifyElevatorCommand(elevator, gamepad2);
+        //elevator.setDefaultCommand(modifyElevatorCommand);
 
         // GAME ROUTINES
             // BASKETS
@@ -97,7 +105,7 @@ public class MainSystem extends LinearOpMode {
             Button operatorRightBumper = operator.getGamepadButton(GamepadKeys.Button.RIGHT_BUMPER);
             operatorRightBumper.whenPressed(new StowAll(arm, elevator));
 
-            // STOW ALL
+            // CLIMB
             Button operatorLeftBumper = operator.getGamepadButton(GamepadKeys.Button.LEFT_BUMPER);
             operatorLeftBumper.whenPressed(new Climb(arm, elevator));
 
