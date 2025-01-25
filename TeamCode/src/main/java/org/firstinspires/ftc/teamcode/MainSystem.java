@@ -34,8 +34,6 @@ import org.firstinspires.ftc.teamcode.Commands.Drive;
 @TeleOp
 public class MainSystem extends LinearOpMode {
 
-
-
     private ModifyArmCommand modifyArmCommand;
     private ModifyElevatorCommand modifyElevatorCommand;
 
@@ -100,7 +98,7 @@ public class MainSystem extends LinearOpMode {
             operatorRightBumper.whenPressed(new StowAll(arm, elevator));
 
             // STOW ALL
-             Button operatorLeftBumper = operator.getGamepadButton(GamepadKeys.Button.LEFT_BUMPER);
+            Button operatorLeftBumper = operator.getGamepadButton(GamepadKeys.Button.LEFT_BUMPER);
             operatorLeftBumper.whenPressed(new Climb(arm, elevator));
 
 
@@ -131,11 +129,6 @@ public class MainSystem extends LinearOpMode {
                     telemetry.addData("Elevator_Distance", elevator.getHeight());
                     telemetry.addData("Arm Position", arm.getPosition());
                     telemetry.addData("Index", Index.getIndexValue());
-
-                    //telemetry.addData("ArmTarget",  positionsTable.getArmTarget(Index.getIndexValue()));
-                    //telemetry.addData("ElevatorTarget",  positionsTable.getElevatorTarget(Index.getIndexValue()));
-
-
 
                 // -- UPDATE TELEMETRY -- //
                     telemetry.update();
