@@ -79,11 +79,13 @@ public class MainSystem extends LinearOpMode {
             driverDpadUp.whenReleased(new GroundGrabLong(arm, elevator));
 
             // MANUAL ARM
-            modifyArmCommand = new ModifyArmCommand(arm, gamepad2);
+            modifyArmCommand = new ModifyArmCommand(arm);
+            modifyArmCommand.setGamepad(gamepad2);
             arm.setDefaultCommand(modifyArmCommand);
 
             // MANUAL ELEVATOR
-            modifyElevatorCommand = new ModifyElevatorCommand(elevator, gamepad2);
+            modifyElevatorCommand = new ModifyElevatorCommand(elevator);
+            modifyElevatorCommand.setGamepad(gamepad2);
             elevator.setDefaultCommand(modifyElevatorCommand);
 
         // GAME ROUTINES

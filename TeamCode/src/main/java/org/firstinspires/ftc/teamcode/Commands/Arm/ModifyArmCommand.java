@@ -7,22 +7,28 @@ import com.qualcomm.robotcore.hardware.Gamepad;
 public class ModifyArmCommand extends CommandBase {
 
     private final Arm arm;
-    private final Gamepad gamepad;
+    private Gamepad gamepad;
 
-    private static final double INCREMENT = 5.0;
+    private static final double INCREMENT = 10.0;
 
-    public ModifyArmCommand(Arm arm, Gamepad gamepad) {
+    public ModifyArmCommand(Arm arm) {
         this.arm = arm;
-        this.gamepad = gamepad;
         addRequirements(arm);
+    }
+
+    // Method to set the gamepad dynamically
+    public void setGamepad(Gamepad gamepad) {
+        this.gamepad = gamepad;
     }
 
     @Override
     public void execute() {
-        if (gamepad.dpad_up) {
-            arm.setTarget(arm.getPosition() + INCREMENT);
-        } else if (gamepad.dpad_down) {
-            arm.setTarget(arm.getPosition() - INCREMENT);
+        if (gamepad != null) {
+            if (gamepad.dpad_up) {
+                arm.setTarget(arm.getPosition() + INCREMENT);
+            } else if (gamepad.dpad_down) {
+                arm.setTarget(arm.getPosition() - INCREMENT);
+            }
         }
     }
 

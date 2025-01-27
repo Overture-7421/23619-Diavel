@@ -6,7 +6,6 @@ import org.firstinspires.ftc.teamcode.Subsystems.Arm;
 public class MoveArm extends CommandBase {
 
     private final Arm arm;
-
     private final double targetPosition;
 
     public MoveArm(Arm subsystem, double targetPosition) {
