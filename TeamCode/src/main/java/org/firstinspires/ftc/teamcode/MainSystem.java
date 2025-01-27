@@ -1,12 +1,12 @@
 package org.firstinspires.ftc.teamcode;
 
 
-//import org.firstinspires.ftc.teamcode.Commands.Arm.ModifyArmCommand;
+import org.firstinspires.ftc.teamcode.Commands.Arm.ModifyArmCommand;
 import org.firstinspires.ftc.teamcode.Commands.Baskets.HighBasket;
 import org.firstinspires.ftc.teamcode.Commands.Chambers.HighChamber;
 import org.firstinspires.ftc.teamcode.Commands.Baskets.LowBasket;
 import org.firstinspires.ftc.teamcode.Commands.Chambers.LowChamber;
-//import org.firstinspires.ftc.teamcode.Commands.Elevator.ModifyElevatorCommand;
+import org.firstinspires.ftc.teamcode.Commands.Elevator.ModifyElevatorCommand;
 import org.firstinspires.ftc.teamcode.Commands.GroundGrabLong;
 import org.firstinspires.ftc.teamcode.Commands.GroundGrabMedium;
 import org.firstinspires.ftc.teamcode.Commands.GroundGrabShort;
@@ -33,8 +33,8 @@ import org.firstinspires.ftc.teamcode.Commands.Drive;
 @TeleOp
 public class MainSystem extends LinearOpMode {
 
-    //private ModifyArmCommand modifyArmCommand;
-    //private ModifyElevatorCommand modifyElevatorCommand;
+    private ModifyArmCommand modifyArmCommand;
+    private ModifyElevatorCommand modifyElevatorCommand;
 
     @Override
     public void runOpMode(){
@@ -78,13 +78,13 @@ public class MainSystem extends LinearOpMode {
             driverDpadUp.whenHeld(new GroundGrabLong(arm, elevator));
             driverDpadUp.whenReleased(new GroundGrabLong(arm, elevator));
 
-        // MANUAL ARM
-        //modifyArmCommand = new ModifyArmCommand(arm, gamepad2);
-        //arm.setDefaultCommand(modifyArmCommand);
+            // MANUAL ARM
+            modifyArmCommand = new ModifyArmCommand(arm, gamepad2);
+            arm.setDefaultCommand(modifyArmCommand);
 
-        // MANUAL ELEVATOR
-        //modifyElevatorCommand = new ModifyElevatorCommand(elevator, gamepad2);
-        //elevator.setDefaultCommand(modifyElevatorCommand);
+            // MANUAL ELEVATOR
+            modifyElevatorCommand = new ModifyElevatorCommand(elevator, gamepad2);
+            elevator.setDefaultCommand(modifyElevatorCommand);
 
         // GAME ROUTINES
             // BASKETS
