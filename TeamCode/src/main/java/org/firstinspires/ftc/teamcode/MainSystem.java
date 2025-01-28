@@ -64,31 +64,31 @@ public class MainSystem extends LinearOpMode {
 
         // GROUND GRAB COMMANDS
             // SHORT GROUND GRAB
-            Button driverDpadDown = driver.getGamepadButton(GamepadKeys.Button.DPAD_DOWN);
-            driverDpadDown.whenHeld(new GroundGrabShort(arm, elevator));
-            driverDpadDown.whenReleased(new GroundGrabShort(arm, elevator));
+            Button driverButtonA = driver.getGamepadButton(GamepadKeys.Button.A);
+            driverButtonA.whenHeld(new GroundGrabShort(arm, elevator));
+            driverButtonA.whenReleased(new GroundGrabShort(arm, elevator));
 
             // MEDIUM GROUND GRAB
-            Button driverDpadRight = driver.getGamepadButton(GamepadKeys.Button.DPAD_RIGHT);
-            driverDpadRight.whenHeld(new GroundGrabMedium(arm, elevator));
-            driverDpadRight.whenReleased(new GroundGrabMedium(arm, elevator));
+            Button driverButtonY = driver.getGamepadButton(GamepadKeys.Button.Y);
+            driverButtonY.whenHeld(new GroundGrabMedium(arm, elevator));
+            driverButtonY.whenReleased(new GroundGrabMedium(arm, elevator));
 
             // LONG GROUND GRAB
-            Button driverDpadUp = driver.getGamepadButton(GamepadKeys.Button.DPAD_UP);
-            driverDpadUp.whenHeld(new GroundGrabLong(arm, elevator));
-            driverDpadUp.whenReleased(new GroundGrabLong(arm, elevator));
+            Button driverRightBumper = driver.getGamepadButton(GamepadKeys.Button.RIGHT_BUMPER);
+            driverRightBumper.whenHeld(new GroundGrabLong(arm, elevator));
+            driverRightBumper.whenReleased(new GroundGrabLong(arm, elevator));
 
-            // MANUAL ARM
-            modifyArmCommand = new ModifyArmCommand(arm);
-            modifyArmCommand.setGamepad(gamepad2);
-            arm.setDefaultCommand(modifyArmCommand);
+        // MANUAL ARM
+        modifyArmCommand = new ModifyArmCommand(arm);
+        modifyArmCommand.setGamepad(gamepad1);
+        arm.setDefaultCommand(modifyArmCommand);
 
-            // MANUAL ELEVATOR
-            modifyElevatorCommand = new ModifyElevatorCommand(elevator);
-            modifyElevatorCommand.setGamepad(gamepad2);
-            elevator.setDefaultCommand(modifyElevatorCommand);
+        // MANUAL ELEVATOR
+        modifyElevatorCommand = new ModifyElevatorCommand(elevator);
+        modifyElevatorCommand.setGamepad(gamepad1);
+        elevator.setDefaultCommand(modifyElevatorCommand);
 
-        // GAME ROUTINES
+        /* GAME ROUTINES */
             // BASKETS
             Button operatorButtonA = operator.getGamepadButton(GamepadKeys.Button.A);
             operatorButtonA.whenPressed(new LowBasket(arm, elevator));
@@ -108,8 +108,8 @@ public class MainSystem extends LinearOpMode {
             operatorRightBumper.whenPressed(new StowAll(arm, elevator));
 
             // CLIMB
-            Button operatorLeftBumper = operator.getGamepadButton(GamepadKeys.Button.LEFT_BUMPER);
-            operatorLeftBumper.whenPressed(new Climb(arm, elevator));
+            Button driverLeftBumper = driver.getGamepadButton(GamepadKeys.Button.LEFT_BUMPER);
+            driverLeftBumper.whenPressed(new Climb(arm, elevator));
 
 
         waitForStart();
