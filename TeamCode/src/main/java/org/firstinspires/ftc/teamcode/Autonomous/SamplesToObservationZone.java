@@ -51,11 +51,11 @@ public class SamplesToObservationZone extends LinearOpMode {
 
         Trajectory First = TrajectoryGenerator.generateTrajectory(Arrays.asList(
                 new Pose2d(0,0,Rotation2d.fromDegrees(0)),
-                new Pose2d(0.19,0,Rotation2d.fromDegrees(0))), forwardConfig
+                new Pose2d(0.16,0.5,Rotation2d.fromDegrees(0))), forwardConfig
         );
 
         Trajectory Second = TrajectoryGenerator.generateTrajectory(Arrays.asList(
-                new Pose2d(0.19,0,Rotation2d.fromDegrees(-25)),
+                new Pose2d(0.16,0.5,Rotation2d.fromDegrees(-25)),
                 new Pose2d(1.36,-0.53,Rotation2d.fromDegrees(-25))), forwardConfig
         );
 
@@ -114,7 +114,7 @@ public class SamplesToObservationZone extends LinearOpMode {
                 new RamsetteCommand(chassis, Fourth),
                 new WaitCommand(500),
                 new TurnToAngle(chassis, Rotation2d.fromDegrees(-45)),
-                new RamsetteCommand(chassis, Fifth)/*,
+                new RamsetteCommand(chassis, Fifth),
                 new WaitCommand(500),
                 new TurnToAngle(chassis, Rotation2d.fromDegrees(0)),
                 new RamsetteCommand(chassis, Sixth),
@@ -127,7 +127,6 @@ public class SamplesToObservationZone extends LinearOpMode {
                 new WaitCommand(500),
                 new TurnToAngle(chassis, Rotation2d.fromDegrees(0)),
                 new RamsetteCommand(chassis, Ninth)
-                */
 
         );
 

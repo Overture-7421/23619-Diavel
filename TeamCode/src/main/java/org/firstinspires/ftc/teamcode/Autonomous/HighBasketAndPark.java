@@ -53,20 +53,26 @@ public class HighBasketAndPark extends LinearOpMode {
         ReverseConfig.setReversed(true);
 
         Trajectory First = TrajectoryGenerator.generateTrajectory(Arrays.asList(
-                new Pose2d(0.0,0,Rotation2d.fromDegrees(0.0)),
-                new Pose2d(-1.20,0.40,Rotation2d.fromDegrees(45.0))), ReverseConfig
+                new Pose2d(0,0,Rotation2d.fromDegrees(0)),
+                new Pose2d(-1,0.40,Rotation2d.fromDegrees(45))), ReverseConfig
         );
+
+        /*Trajectory Second = TrajectoryGenerator.generateTrajectory(Arrays.asList(
+                new Pose2d(-1,0.40,Rotation2d.fromDegrees(0)),
+                new Pose2d(-1,0.40,Rotation2d.fromDegrees(45))), ReverseConfig
+        );*/
+
 
 
 
         SequentialCommandGroup FirstCommandGroup = new SequentialCommandGroup(
-
+                new TurnToAngle(chassis, Rotation2d.fromDegrees(45)),
                 new RamsetteCommand(chassis, First),
                 new HighBasket(arm, elevator).withTimeout(100),
                 new MoveIntake(intake, -1).withTimeout(100),
-                new WaitCommand(100),
+                new WaitCommand(500),
                 new MoveIntake(intake, 0),
-                new StowAll(arm, elevator).withTimeout(100)
+                new StowAll(arm, elevator).withTimeout(1000)
         );
 
 
