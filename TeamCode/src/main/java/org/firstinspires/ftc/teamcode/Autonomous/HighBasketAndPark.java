@@ -18,6 +18,7 @@ import org.firstinspires.ftc.teamcode.Autonomous.AutonomousIndex.TurnToAngle;
 import org.firstinspires.ftc.teamcode.Commands.Arm.MoveArm;
 import org.firstinspires.ftc.teamcode.Commands.Baskets.HighBasket;
 import org.firstinspires.ftc.teamcode.Commands.Baskets.LowBasket;
+import org.firstinspires.ftc.teamcode.Commands.Elevator.ElevatorPositions;
 import org.firstinspires.ftc.teamcode.Commands.GroundGrab;
 import org.firstinspires.ftc.teamcode.Commands.Intake.MoveIntake;
 import org.firstinspires.ftc.teamcode.Commands.StowAll;
@@ -54,25 +55,50 @@ public class HighBasketAndPark extends LinearOpMode {
 
         Trajectory First = TrajectoryGenerator.generateTrajectory(Arrays.asList(
                 new Pose2d(0,0,Rotation2d.fromDegrees(0)),
-                new Pose2d(-1,0.40,Rotation2d.fromDegrees(45))), ReverseConfig
+                new Pose2d(-1.05,0.38,Rotation2d.fromDegrees(45))), ReverseConfig
         );
 
-        /*Trajectory Second = TrajectoryGenerator.generateTrajectory(Arrays.asList(
-                new Pose2d(-1,0.40,Rotation2d.fromDegrees(0)),
-                new Pose2d(-1,0.40,Rotation2d.fromDegrees(45))), ReverseConfig
-        );*/
+        Trajectory Second = TrajectoryGenerator.generateTrajectory(Arrays.asList(
+                new Pose2d(-1.05,0.38,Rotation2d.fromDegrees(90)),
+                new Pose2d(-1.05,0.7,Rotation2d.fromDegrees(90))), ForwardConfig
+        );
+       Trajectory Third = TrajectoryGenerator.generateTrajectory(Arrays.asList(
+                new Pose2d(-1.05,0.7,Rotation2d.fromDegrees(60)),
+                new Pose2d(-1.09,0.25,Rotation2d.fromDegrees(60))), ReverseConfig
+        );
+        Trajectory Four = TrajectoryGenerator.generateTrajectory(Arrays.asList(
+                new Pose2d(-1.2,0.3,Rotation2d.fromDegrees(45)),
+                new Pose2d(-1.05,0.38,Rotation2d.fromDegrees(45))), ForwardConfig
+        );
+
 
 
 
 
         SequentialCommandGroup FirstCommandGroup = new SequentialCommandGroup(
-                new TurnToAngle(chassis, Rotation2d.fromDegrees(45)),
+
                 new RamsetteCommand(chassis, First),
-                new HighBasket(arm, elevator).withTimeout(100),
-                new MoveIntake(intake, -1).withTimeout(100),
+                new HighBasket(arm, elevator).withTimeout(500),
                 new WaitCommand(500),
-                new MoveIntake(intake, 0),
-                new StowAll(arm, elevator).withTimeout(1000)
+                new MoveIntake(intake, -1).withTimeout(2500),
+                new WaitCommand(1000),
+                new MoveIntake(intake, 0).withTimeout(100),
+                new StowAll(arm, elevator),
+                new WaitCommand(500),
+                new TurnToAngle(chassis, Rotation2d.fromDegrees(90)),
+                new WaitCommand(500) ,
+                new RamsetteCommand(chassis, Second),
+                new WaitCommand(2500),
+                new TurnToAngle(chassis, Rotation2d.fromDegrees(60)),
+                //respectivo new groundgrab
+                new RamsetteCommand(chassis, Third),
+                new TurnToAngle(chassis, Rotation2d.fromDegrees(75)),
+                new MoveArm(arm, 80).withTimeout(450),
+                new ElevatorPositions(elevator, 42).withTimeout(1000)
+                /*//new RamsetteCommand(chassis, Four),
+                new HighBasket(arm, elevator)
+
+                */
         );
 
 
