@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.Commands;
+package org.firstinspires.ftc.teamcode.Commands.GroundGrab;
 
 import org.firstinspires.ftc.teamcode.Commands.Arm.MoveArm;
 import org.firstinspires.ftc.teamcode.Commands.Elevator.ElevatorPositions;
@@ -12,6 +12,7 @@ public class GroundGrabMedium extends SequentialCommandGroup {
 
     public GroundGrabMedium(Arm arm, Elevator elevator){
         addCommands(
+                new ElevatorPositions(elevator, 10).withTimeout(500),
                 new MoveArm(arm, Constants.Arm.ARM_MEDIUM_GROUNDGRAB).withTimeout(500),
                 new ElevatorPositions(elevator, Constants.Elevator.ELEVATOR_MEDIUM_GROUNDGRAB).withTimeout(1500)
         );
