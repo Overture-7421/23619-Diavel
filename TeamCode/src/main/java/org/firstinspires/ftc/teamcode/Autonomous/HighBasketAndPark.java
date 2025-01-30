@@ -88,11 +88,12 @@ public class HighBasketAndPark extends LinearOpMode {
                 new TurnToAngle(chassis, Rotation2d.fromDegrees(92)),
                 new WaitCommand(500) ,
                 new MoveArm(arm, -37).withTimeout(500),
+
                 new SequentialCommandGroup(
                 new MoveIntake(intake, 1),
-                new ElevatorPositions(elevator, 33).withTimeout(1500)),
-                new WaitCommand(1000),
-                new MoveIntake(intake, 0).withTimeout(10),
+                new ElevatorPositions(elevator, 33).withTimeout(1500))
+
+               /* new MoveIntake(intake, 0).withTimeout(10),
                 new StowAll(arm, elevator),
                 new TurnToAngle(chassis, Rotation2d.fromDegrees(45)),
                 new HighBasket(arm, elevator),
@@ -100,6 +101,8 @@ public class HighBasketAndPark extends LinearOpMode {
                 new MoveIntake(intake, -1),
                 new StowAll(arm, elevator)
 
+
+                */
 
         );
 
