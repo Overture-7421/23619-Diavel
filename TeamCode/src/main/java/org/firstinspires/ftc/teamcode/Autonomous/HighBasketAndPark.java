@@ -63,7 +63,7 @@ public class HighBasketAndPark extends LinearOpMode {
                 new Pose2d(-1.05,0.7,Rotation2d.fromDegrees(90))), ForwardConfig
         );
        Trajectory Third = TrajectoryGenerator.generateTrajectory(Arrays.asList(
-                new Pose2d(-1.05,0.7,Rotation2d.fromDegrees(60)),
+                new Pose2d(-1.05,0.38,Rotation2d.fromDegrees(60)),
                 new Pose2d(-1.09,0.25,Rotation2d.fromDegrees(60))), ReverseConfig
         );
         Trajectory Four = TrajectoryGenerator.generateTrajectory(Arrays.asList(
@@ -85,20 +85,22 @@ public class HighBasketAndPark extends LinearOpMode {
                 new MoveIntake(intake, 0).withTimeout(100),
                 new StowAll(arm, elevator),
                 new WaitCommand(500),
-                new TurnToAngle(chassis, Rotation2d.fromDegrees(90)),
+                new TurnToAngle(chassis, Rotation2d.fromDegrees(92)),
                 new WaitCommand(500) ,
-                new RamsetteCommand(chassis, Second),
-                new WaitCommand(2500),
-                new TurnToAngle(chassis, Rotation2d.fromDegrees(60)),
-                //respectivo new groundgrab
-                new RamsetteCommand(chassis, Third),
-                new TurnToAngle(chassis, Rotation2d.fromDegrees(75)),
-                new MoveArm(arm, 80).withTimeout(450),
-                new ElevatorPositions(elevator, 42).withTimeout(1000)
-                /*//new RamsetteCommand(chassis, Four),
-                new HighBasket(arm, elevator)
+                new MoveArm(arm, -37).withTimeout(500),
+                new SequentialCommandGroup(
+                new MoveIntake(intake, 1),
+                new ElevatorPositions(elevator, 33).withTimeout(1500)),
+                new WaitCommand(1000),
+                new MoveIntake(intake, 0).withTimeout(10),
+                new StowAll(arm, elevator),
+                new TurnToAngle(chassis, Rotation2d.fromDegrees(45)),
+                new HighBasket(arm, elevator),
+                new MoveArm(arm, 102),
+                new MoveIntake(intake, -1),
+                new StowAll(arm, elevator)
 
-                */
+
         );
 
 
