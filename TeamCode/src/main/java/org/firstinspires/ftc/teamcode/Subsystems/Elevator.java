@@ -19,7 +19,7 @@ public class Elevator extends SubsystemBase {
     private final double TICKS_PER_REVOLUTION = 753.2;
     private  final double ELEVATOR_WINCH_CIRCUMFERENCE = 12.0008738;
     // In Meters diameter: 3.82 cm
-    private final double GEAR_REDUCTION = 13.7;
+    private final double GEAR_REDUCTION = 26.9;
 
     private  double target = 0;
 
