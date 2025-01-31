@@ -24,7 +24,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.arcrobotics.ftclib.command.button.Button;
-import org.firstinspires.ftc.teamcode.Commands.Index;
+
 import org.firstinspires.ftc.teamcode.Commands.Climber.Climb;
 
 import org.firstinspires.ftc.teamcode.Commands.Drive;
@@ -56,11 +56,10 @@ public class MainSystem extends LinearOpMode {
         // MANUAL INTAKE
         Button driverButtonX= driver.getGamepadButton(GamepadKeys.Button.X);
         driverButtonX.whenHeld(new MoveIntake(intake,1.0));
-        driverButtonX.whenReleased(new MoveIntake(intake,0.0));
 
         Button driverButtonB= driver.getGamepadButton(GamepadKeys.Button.B);
-        driverButtonB.whenHeld(new MoveIntake(intake,-1.0));
-        driverButtonB.whenReleased(new MoveIntake(intake,0.0));
+        driverButtonB.whenHeld(new MoveIntake(intake,0.0));
+
 
         // GROUND GRAB COMMANDS
             // SHORT GROUND GRAB
@@ -94,7 +93,7 @@ public class MainSystem extends LinearOpMode {
             operatorButtonA.whenPressed(new LowBasket(arm, elevator));
 
             Button operatorButtonB = operator.getGamepadButton(GamepadKeys.Button.B);
-            operatorButtonB.whenPressed(new HighBasket(intake, arm, elevator));
+            operatorButtonB.whenPressed(new HighBasket( arm, elevator));
 
             // CHAMBERS
             Button operatorButtonY = operator.getGamepadButton(GamepadKeys.Button.Y);
@@ -138,7 +137,6 @@ public class MainSystem extends LinearOpMode {
                     telemetry.addLine("--- Subsystem Telemetry ---");
                     telemetry.addData("Elevator_Distance", elevator.getHeight());
                     telemetry.addData("Arm Position", arm.getPosition());
-                    telemetry.addData("Index", Index.getIndexValue());
 
                 // -- UPDATE TELEMETRY -- //
                     telemetry.update();
