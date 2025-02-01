@@ -9,7 +9,7 @@ public class ModifyArmCommand extends CommandBase {
     private final Arm arm;
     private Gamepad gamepad;
 
-    private static final double INCREMENT = 10.0;
+    private static final double INCREMENT = 2.0;
 
     public ModifyArmCommand(Arm arm) {
         this.arm = arm;
