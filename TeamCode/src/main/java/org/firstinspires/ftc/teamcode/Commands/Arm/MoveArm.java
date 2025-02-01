@@ -22,6 +22,6 @@ public class MoveArm extends CommandBase {
     @Override
     public boolean isFinished() {
         double currentPosition = arm.getPosition();
-        return Math.abs(targetPosition - currentPosition) < 0.5;
+        return Math.abs(targetPosition - currentPosition) < 1;
     }
 }

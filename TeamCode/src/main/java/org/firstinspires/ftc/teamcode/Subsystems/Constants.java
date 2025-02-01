@@ -22,12 +22,12 @@ public final class Constants {
             public static final double ARM_CLIMB = 75; /* PENDING TEST */
 
             // BASKETS
-            public static final double ARM_LOWBASKET = 50;
-            public static final double ARM_HIGHBASKET = 65;
+            public static final double ARM_LOWBASKET = 40;
+            public static final double ARM_HIGHBASKET = 55;
 
             // CHAMBERS
             public static final double ARM_LOWCHAMBER = 0;
-            public static final double ARM_HIGHCHAMBER = 38;// 15 si se hace de abajo-arriba y 90 si se hace de arriba-abajo
+            public static final double ARM_HIGHCHAMBER = 41;// 15 si se hace de abajo-arriba y 90 si se hace de arriba-abajo
     }
 
     public static class Elevator {
@@ -54,7 +54,7 @@ public final class Constants {
 
             // CHAMBERS
             public static final double ELEVATOR_LOWCHAMBER = 0;
-            public static final double ELEVATOR_HIGHCHAMBER = 5;//0 si se hace de arriba-abajo y 5 si se hace de abajo-arriba
+            public static final double ELEVATOR_HIGHCHAMBER = 30;//0 si se hace de arriba-abajo y 5 si se hace de abajo-arriba
 
     }
 }
