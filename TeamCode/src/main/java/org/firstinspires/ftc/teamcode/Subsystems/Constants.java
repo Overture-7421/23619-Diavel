@@ -35,7 +35,6 @@ public final class Constants {
             public static final double ELEVATOR_STOW = 0;
 
             //ELEVATOR GROUND GRAB
-
                 //ELEVATOR SHORT GROUND GRAB
                 public static final double ELEVATOR_SHORT_GROUNDGRAB = 30.5;
 
