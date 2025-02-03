@@ -34,10 +34,10 @@ public class Drive extends CommandBase {
         left = OverJoystickHandler.handleJoystickInput(left);
 
         if (turnRight > 0) {
-            right = -0.5;
+            right = -0.3;
         }
         if (turnLeft > 0) {
-            right = 0.5;
+            right = 0.3;
         }
 
         rightState = rightProfile.calculate(0.5, rightState,  new TrapezoidProfile.State(right, 0.0));
