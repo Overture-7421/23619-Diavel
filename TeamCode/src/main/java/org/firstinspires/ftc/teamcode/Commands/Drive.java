@@ -27,8 +27,18 @@ public class Drive extends CommandBase {
         double right = -driverGamepad.right_stick_x; //Input of the Joysticks
         double left = -driverGamepad.left_stick_y;
 
+        double turnRight = driverGamepad.right_trigger;
+        double turnLeft = driverGamepad.left_trigger;
+
         right = OverJoystickHandler.handleJoystickInput(right); //Asign Values of Joysticks
         left = OverJoystickHandler.handleJoystickInput(left);
+
+        if (turnRight > 0){
+            right = -0.3;
+        }
+        if (turnLeft > 0){
+            right = 0.3;
+        }
 
         rightState = rightProfile.calculate(0.5, rightState,  new TrapezoidProfile.State(right, 0.0));
         leftState = leftProfile.calculate(0.5, leftState, new TrapezoidProfile.State(left, 0.0));

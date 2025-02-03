@@ -84,7 +84,7 @@ public class HighBasketAndPark extends LinearOpMode {
                 new WaitCommand(500),
                 new StowAll(arm, elevator),
                 new TurnToAngle(chassis, Rotation2d.fromDegrees(45)).withTimeout(3500),
-                new MoveArm(arm, 50).withTimeout(750),
+                new MoveArm(arm, 49).withTimeout(750),
                 new ElevatorPositions(elevator,72 ).withTimeout(2500),
                 new MoveIntake(intake, 0).withTimeout(50),
                 new WaitCommand(500),
