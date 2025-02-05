@@ -30,7 +30,7 @@ public class Arm extends SubsystemBase {
 
     private static final double COUNTS_PER_REV = 8192;
     private static final double OFFSET = 47;
-    private double target = -47;
+    public double target = -47;
     private static final double ff = 0.180;
 
 
@@ -43,7 +43,7 @@ public class Arm extends SubsystemBase {
         armPID = new PIDController(0.044, 0.0, 0.0);
 
         motor.setDirection(DcMotorSimple.Direction.REVERSE);
-        motor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+        motor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         motor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
     }
@@ -64,6 +64,15 @@ public class Arm extends SubsystemBase {
         target = targetPos;
 
     }
+
+    public void decreaseTarget(){
+        target = target - 1;
+    }
+
+    public void increaseTarget(){
+        target = target + 1;
+    }
+
 
     /*public boolean isTouchPressed() {
         return arm_touch.isPressed();
