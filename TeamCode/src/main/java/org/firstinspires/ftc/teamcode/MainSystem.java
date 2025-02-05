@@ -6,6 +6,7 @@ import org.firstinspires.ftc.teamcode.Commands.Baskets.HighBasket;
 import org.firstinspires.ftc.teamcode.Commands.Chambers.HighChamber;
 import org.firstinspires.ftc.teamcode.Commands.Baskets.LowBasket;
 import org.firstinspires.ftc.teamcode.Commands.Chambers.LowChamber;
+import org.firstinspires.ftc.teamcode.Commands.Elevator.ElevatorPositions;
 import org.firstinspires.ftc.teamcode.Commands.Elevator.ModifyElevatorCommand;
 import org.firstinspires.ftc.teamcode.Commands.GrabSpecimens.GrabSpecimens;
 import org.firstinspires.ftc.teamcode.Commands.GroundGrab.GroundGrabLong;
@@ -137,6 +138,7 @@ public class MainSystem extends LinearOpMode {
                     telemetry.addData("Elevator_Distance", elevator.getHeight());
                     telemetry.addData("Arm Position", arm.getPosition());
                     telemetry.addData("Arm Target", arm.target);
+                    telemetry.addData("Elevator Target", elevator.target);
 
                 // -- UPDATE TELEMETRY -- //
                     telemetry.update();

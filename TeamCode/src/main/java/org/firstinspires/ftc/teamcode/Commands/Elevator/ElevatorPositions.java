@@ -5,8 +5,11 @@ import org.firstinspires.ftc.teamcode.Subsystems.Elevator;
 public class ElevatorPositions extends CommandBase {
 
     private final Elevator elevator;
-    private final double targetHeight;
+    private double targetHeight;
 
+    public double getTargetHeight(){
+        return targetHeight;
+    }
     public ElevatorPositions(Elevator elevator, double targetHeight) {
         this.elevator = elevator;
         this.targetHeight = targetHeight;
