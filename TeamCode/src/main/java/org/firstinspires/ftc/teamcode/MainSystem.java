@@ -74,8 +74,8 @@ public class MainSystem extends LinearOpMode {
 
             // LONG GROUND GRAB
             Button driverRightBumper = driver.getGamepadButton(GamepadKeys.Button.RIGHT_BUMPER);
-            driverRightBumper.whenHeld(new GroundGrabLong(arm, elevator));
-            driverRightBumper.whenReleased(new GroundGrabLong(arm, elevator));
+            driverRightBumper.whenHeld(new GroundGrabLong(arm, elevator, driver));
+
 
         // MANUAL ARM
         modifyArmCommand = new ModifyArmCommand(arm);
