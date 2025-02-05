@@ -5,8 +5,11 @@ import org.firstinspires.ftc.teamcode.Subsystems.Elevator;
 public class ElevatorPositions extends CommandBase {
 
     private final Elevator elevator;
-    private final double targetHeight;
+    private double targetHeight;
 
+    public double getTargetHeight(){
+        return targetHeight;
+    }
     public ElevatorPositions(Elevator elevator, double targetHeight) {
         this.elevator = elevator;
         this.targetHeight = targetHeight;
@@ -21,6 +24,6 @@ public class ElevatorPositions extends CommandBase {
     @Override
     public boolean isFinished() {
         double currentHeight = elevator.getHeight();
-        return Math.abs(targetHeight - currentHeight) < 0.01;
+        return Math.abs(targetHeight - currentHeight) < 0.2;
     }
 }

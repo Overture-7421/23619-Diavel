@@ -9,7 +9,9 @@ public class ModifyArmCommand extends CommandBase {
     private final Arm arm;
     private Gamepad gamepad;
 
-    private static final double INCREMENT = 10.0;
+    private static final double INCREMENT = 2.0;
+
+    private static final double DECREASE = -2.0;
 
     public ModifyArmCommand(Arm arm) {
         this.arm = arm;
@@ -25,9 +27,9 @@ public class ModifyArmCommand extends CommandBase {
     public void execute() {
         if (gamepad != null) {
             if (gamepad.dpad_up) {
-                arm.setTarget(arm.getPosition() + INCREMENT);
+                arm.increaseTarget();
             } else if (gamepad.dpad_down) {
-                arm.setTarget(arm.getPosition() - INCREMENT);
+                arm.decreaseTarget();
             }
         }
     }

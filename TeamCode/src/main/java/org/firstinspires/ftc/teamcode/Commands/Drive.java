@@ -33,10 +33,11 @@ public class Drive extends CommandBase {
         right = OverJoystickHandler.handleJoystickInput(right); //Asign Values of Joysticks
         left = OverJoystickHandler.handleJoystickInput(left);
 
-        if (turnRight > 0) {
+        if (turnRight > 0){
             right = -0.3;
         }
-        if (turnLeft > 0) {
+        if (turnLeft > 0){
+
             right = 0.3;
         }
 

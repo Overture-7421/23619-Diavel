@@ -11,8 +11,10 @@ import com.arcrobotics.ftclib.command.SubsystemBase;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 //@Config
-public class Elevator extends SubsystemBase {
 
+public class Elevator extends SubsystemBase {
+//public static double d;
+    //public static double p;
     //private final Telemetry telemetry;
     private final DcMotorEx elevatorMotor;
     private PIDController elevatorMotorPID;
@@ -21,14 +23,14 @@ public class Elevator extends SubsystemBase {
     // In Meters diameter: 3.82 cm
     private final double GEAR_REDUCTION = 26.9;
 
-    private  double target = 0;
+    public  double target = 0;
 
     public Elevator(HardwareMap hardwareMap) {
         //FtcDashboard dashboard = FtcDashboard.getInstance();
         //telemetry = dashboard.getTelemetry();
         elevatorMotor = (DcMotorEx) hardwareMap.get(DcMotor.class, "elevator_Motor");
 
-        elevatorMotorPID = new PIDController(0.6,0,0);
+        elevatorMotorPID = new PIDController(0.6,0,0.025);
         elevatorMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         elevatorMotor.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.FLOAT);
         elevatorMotor.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -48,18 +50,26 @@ public class Elevator extends SubsystemBase {
     //Periodic actions used for positional Elevator
     @Override
     public void periodic() {
+        //elevatorMotorPID.setD(d);
+       //
+        // elevatorMotorPID.setP(p);
         double outputMotor = elevatorMotorPID.calculate(getHeight(), target);
         elevatorMotor.setPower(outputMotor);
 
-        if(getHeight() > 97){
+        /*if(getHeight() > 97){
             elevatorMotor.setPower(0.0);
         }
 
-        if(getHeight() < -0.1){
+        if(getHeight() < 0.1){
             elevatorMotor.setPower(0.0);
-        }
+        }*/
+       /* if(target < 0){
+            target= 0;
+        }*/
 
         //telemetry.addData("Elevator Height", getHeight());
         //telemetry.addData("Elevator Target", target);
     }
+
+
 }

@@ -45,7 +45,7 @@ public class HighBasketAndPark extends LinearOpMode {
 
 
         //Forward
-        TrajectoryConfig ForwardConfig = new TrajectoryConfig(0.5,0.2);
+        TrajectoryConfig ForwardConfig = new TrajectoryConfig(1,0.2);
         ForwardConfig.setReversed(false);
 
         //Backward
@@ -54,7 +54,7 @@ public class HighBasketAndPark extends LinearOpMode {
 
         Trajectory First = TrajectoryGenerator.generateTrajectory(Arrays.asList(
                 new Pose2d(0,0,Rotation2d.fromDegrees(0)),
-                new Pose2d(1.05,-0.38,Rotation2d.fromDegrees(45))), ForwardConfig
+                new Pose2d(1.15,-0.22,Rotation2d.fromDegrees(45))), ForwardConfig
         );
 
 
@@ -66,35 +66,29 @@ public class HighBasketAndPark extends LinearOpMode {
         SequentialCommandGroup FirstCommandGroup = new SequentialCommandGroup(
 
                 new RamsetteCommand(chassis, First),
-                new WaitCommand(500),
+                  new WaitCommand(500),
                // new HighBasket(arm, elevator).withTimeout(1500),
-                new WaitCommand(500),
+
                 //new MoveArm(arm , 100).withTimeout(500),
-                new MoveArm(arm, 85).withTimeout(1000),
-                new ElevatorPositions(elevator, 55).withTimeout(1000),
+                new MoveArm(arm, 50).withTimeout(750),
+                new ElevatorPositions(elevator,69 ).withTimeout(1500),
+               new MoveIntake(intake, 0).withTimeout(500),
                 new WaitCommand(500),
-                new MoveIntake(intake, -1).withTimeout(1500),
-
                 new StowAll(arm, elevator),
                 new WaitCommand(500),
-                new TurnToAngle(chassis, Rotation2d.fromDegrees(-90)),
-                new WaitCommand(500) ,
-                new MoveArm(arm, -35).withTimeout(500),
+                new TurnToAngle(chassis, Rotation2d.fromDegrees(-100)).withTimeout(3800),
 
-                new ParallelCommandGroup(
-
-                        new ElevatorPositions(elevator, 33).withTimeout(1500),
-                        new MoveIntake(intake, 1).withTimeout(500)),
-
+                new MoveArm(arm, -28).withTimeout(500),
+                new ElevatorPositions(elevator, 56).withTimeout(1500),
+                new MoveIntake(intake, 1).withTimeout(500),
+                new WaitCommand(500),
                 new StowAll(arm, elevator),
-                new TurnToAngle(chassis, Rotation2d.fromDegrees(45)),
-                new HighBasket(arm, elevator),
-                new MoveArm(arm, 78).withTimeout(500),
-                new ElevatorPositions(elevator, 68),
-                new WaitCommand(2500),
-                new MoveIntake(intake, 0).withTimeout(2500),
+                new TurnToAngle(chassis, Rotation2d.fromDegrees(45)).withTimeout(3500),
+                new MoveArm(arm, 49).withTimeout(750),
+                new ElevatorPositions(elevator,72 ).withTimeout(2500),
+                new MoveIntake(intake, 0).withTimeout(50),
+                new WaitCommand(500),
                 new StowAll(arm, elevator)
-
         );
 
 

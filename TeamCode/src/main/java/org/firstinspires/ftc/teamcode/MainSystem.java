@@ -6,7 +6,9 @@ import org.firstinspires.ftc.teamcode.Commands.Baskets.HighBasket;
 import org.firstinspires.ftc.teamcode.Commands.Chambers.HighChamber;
 import org.firstinspires.ftc.teamcode.Commands.Baskets.LowBasket;
 import org.firstinspires.ftc.teamcode.Commands.Chambers.LowChamber;
+import org.firstinspires.ftc.teamcode.Commands.Elevator.ElevatorPositions;
 import org.firstinspires.ftc.teamcode.Commands.Elevator.ModifyElevatorCommand;
+import org.firstinspires.ftc.teamcode.Commands.GrabSpecimens.GrabSpecimens;
 import org.firstinspires.ftc.teamcode.Commands.GroundGrab.GroundGrabLong;
 import org.firstinspires.ftc.teamcode.Commands.GroundGrab.GroundGrabMedium;
 import org.firstinspires.ftc.teamcode.Commands.GroundGrab.GroundGrabShort;
@@ -24,8 +26,6 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.arcrobotics.ftclib.command.button.Button;
-
-import org.firstinspires.ftc.teamcode.Commands.Climber.Climb;
 
 import org.firstinspires.ftc.teamcode.Commands.Drive;
 
@@ -108,7 +108,7 @@ public class MainSystem extends LinearOpMode {
 
             // CLIMB
             Button driverLeftBumper = driver.getGamepadButton(GamepadKeys.Button.LEFT_BUMPER);
-            driverLeftBumper.whenPressed(new Climb(arm, elevator));
+            driverLeftBumper.whenPressed(new GrabSpecimens(arm, elevator));
 
 
         waitForStart();
@@ -137,6 +137,8 @@ public class MainSystem extends LinearOpMode {
                     telemetry.addLine("--- Subsystem Telemetry ---");
                     telemetry.addData("Elevator_Distance", elevator.getHeight());
                     telemetry.addData("Arm Position", arm.getPosition());
+                    telemetry.addData("Arm Target", arm.target);
+                    telemetry.addData("Elevator Target", elevator.target);
 
                 // -- UPDATE TELEMETRY -- //
                     telemetry.update();
