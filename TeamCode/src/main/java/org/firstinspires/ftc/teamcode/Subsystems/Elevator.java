@@ -51,7 +51,6 @@ public class Elevator extends SubsystemBase {
     @Override
     public void periodic() {
         //elevatorMotorPID.setD(d);
-       //
         // elevatorMotorPID.setP(p);
         double outputMotor = elevatorMotorPID.calculate(getHeight(), target);
         elevatorMotor.setPower(outputMotor);
