@@ -38,6 +38,7 @@ public class MainSystem extends LinearOpMode {
 
     @Override
     public void runOpMode(){
+    CommandScheduler.getInstance().reset();
 
     /* SUBSYSTEM DECLARATION */
     Chassis chassis = new Chassis(hardwareMap);
