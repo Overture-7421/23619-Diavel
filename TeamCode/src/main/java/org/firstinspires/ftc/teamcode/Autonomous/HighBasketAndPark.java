@@ -12,6 +12,7 @@ import com.arcrobotics.ftclib.trajectory.TrajectoryGenerator;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
+import org.firstinspires.ftc.teamcode.Autonomous.AutonomousIndex.ChassisPaths;
 import org.firstinspires.ftc.teamcode.Autonomous.AutonomousIndex.RamsetteCommand;
 import org.firstinspires.ftc.teamcode.Autonomous.AutonomousIndex.TurnToAngle;
 import org.firstinspires.ftc.teamcode.Commands.Arm.MoveArm;
@@ -64,30 +65,35 @@ public class HighBasketAndPark extends LinearOpMode {
 
 
         SequentialCommandGroup FirstCommandGroup = new SequentialCommandGroup(
-
+                new MoveIntake(intake, 1).withTimeout(10),
                 new RamsetteCommand(chassis, First),
                   new WaitCommand(500),
                // new HighBasket(arm, elevator).withTimeout(1500),
 
                 //new MoveArm(arm , 100).withTimeout(500),
-                new MoveArm(arm, 50).withTimeout(750),
-                new ElevatorPositions(elevator,69 ).withTimeout(1500),
-               new MoveIntake(intake, 0).withTimeout(500),
-                new WaitCommand(500),
+                new MoveArm(arm, 48.5).withTimeout(500),
+                new ElevatorPositions(elevator,73 ).withTimeout(1500),
+               new TurnToAngle(chassis, Rotation2d.fromDegrees(33)).withTimeout(2000),
+               new MoveIntake(intake, 0).withTimeout(200),
+
                 new StowAll(arm, elevator),
-                new WaitCommand(500),
-                new TurnToAngle(chassis, Rotation2d.fromDegrees(-100)).withTimeout(3800),
+
+                new TurnToAngle(chassis, Rotation2d.fromDegrees(-102)).withTimeout(3800),
 
                 new MoveArm(arm, -28).withTimeout(500),
-                new ElevatorPositions(elevator, 56).withTimeout(1500),
+                new ElevatorPositions(elevator, 54).withTimeout(1500),
                 new MoveIntake(intake, 1).withTimeout(500),
                 new WaitCommand(500),
                 new StowAll(arm, elevator),
                 new TurnToAngle(chassis, Rotation2d.fromDegrees(45)).withTimeout(3500),
-                new MoveArm(arm, 49).withTimeout(750),
-                new ElevatorPositions(elevator,72 ).withTimeout(2500),
+                new MoveArm(arm, 48.5).withTimeout(750),
+                new ElevatorPositions(elevator,76 ).withTimeout(2500),
+
+                new ChassisPaths(chassis, 0, 0.4).withTimeout(250),
+
                 new MoveIntake(intake, 0).withTimeout(50),
-                new WaitCommand(500),
+                new ChassisPaths(chassis, 0, -0.4).withTimeout(250),
+
                 new StowAll(arm, elevator)
         );
 
