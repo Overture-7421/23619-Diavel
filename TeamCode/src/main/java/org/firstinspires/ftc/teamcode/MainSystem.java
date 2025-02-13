@@ -26,8 +26,11 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.arcrobotics.ftclib.command.button.Button;
+import com.qualcomm.robotcore.hardware.DigitalChannel;
 
 import org.firstinspires.ftc.teamcode.Commands.Drive;
+
+import java.io.PushbackInputStream;
 
 
 @TeleOp
@@ -45,6 +48,9 @@ public class MainSystem extends LinearOpMode {
     Intake intake = new Intake(hardwareMap);
     Arm arm = new Arm(hardwareMap);
     Elevator elevator = new Elevator(hardwareMap);
+
+
+
 
     /* GAMEPAD DECLARATION */
     GamepadEx driver = new GamepadEx(gamepad1);
@@ -141,6 +147,8 @@ public class MainSystem extends LinearOpMode {
                     telemetry.addData("Arm Position", arm.getPosition());
                     telemetry.addData("Arm Target", arm.target);
                     telemetry.addData("Elevator Target", elevator.target);
+                    telemetry.addData("PushButton State", arm.ActiveBottonResetArm);
+                    telemetry.addData("PushButton", arm.armBotton.getState());
 
                 // -- UPDATE TELEMETRY -- //
                     telemetry.update();
