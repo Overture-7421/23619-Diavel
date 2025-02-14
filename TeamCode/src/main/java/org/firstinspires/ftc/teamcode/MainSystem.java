@@ -147,8 +147,8 @@ public class MainSystem extends LinearOpMode {
                     telemetry.addData("Arm Position", arm.getPosition());
                     telemetry.addData("Arm Target", arm.target);
                     telemetry.addData("Elevator Target", elevator.target);
-                    telemetry.addData("PushButton State", arm.ActiveBottonResetArm);
-                    telemetry.addData("PushButton", arm.armBotton.getState());
+                    telemetry.addData("PushButton State", arm.ActiveButtonReset);
+                    telemetry.addData("PushButton", arm.pushButton.getState());
 
                 // -- UPDATE TELEMETRY -- //
                     telemetry.update();

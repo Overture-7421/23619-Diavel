@@ -24,7 +24,7 @@ public class Arm extends SubsystemBase {
 
     private final DcMotorEx motor;
     private final PIDController armPID;
-    private final DigitalChannel pushButton;
+    public final DigitalChannel pushButton;
     public double ActiveButtonReset = 0;
     private static final double COUNTS_PER_REV = 8192;
     private static final double OFFSET = 47;
@@ -78,9 +78,11 @@ public class Arm extends SubsystemBase {
         motor.setPower(motorOutput + armFeedForward(getPosition()));
 
         if (pushButton.getState() == false && ActiveButtonReset == 0){
-            motor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+            motor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             ActiveButtonReset = 1;
+            motor.setMode((DcMotor.RunMode.RUN_WITHOUT_ENCODER));
             setTarget(-OFFSET);
+
         } else if (ActiveButtonReset == 1 && pushButton.getState() == true){
             ActiveButtonReset = 0;
             motor.setMode((DcMotor.RunMode.RUN_WITHOUT_ENCODER));

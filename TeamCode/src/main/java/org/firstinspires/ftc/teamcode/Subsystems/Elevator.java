@@ -70,12 +70,13 @@ public class Elevator extends SubsystemBase {
         double outputMotor = elevatorMotorPID.calculate(getHeight(), target);
         elevatorMotor.setPower(outputMotor);
 
-        if (elevatorBotton.getState()==false  && ActiveBottonReset == 0){
+        if (elevatorBotton.getState()==true  && ActiveBottonReset == 0){
             elevatorMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             ActiveBottonReset= 1;
+            elevatorMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
             setGoal(0);
         } else {
-            if (ActiveBottonReset==1 && elevatorBotton.getState() == true){
+            if (ActiveBottonReset==1 && elevatorBotton.getState() == false){
                 ActiveBottonReset = 0;
 
                 elevatorMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
