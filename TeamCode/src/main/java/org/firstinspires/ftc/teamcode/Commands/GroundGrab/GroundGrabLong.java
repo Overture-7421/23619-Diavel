@@ -10,12 +10,12 @@ import org.firstinspires.ftc.teamcode.Subsystems.Elevator;
 import org.firstinspires.ftc.teamcode.Subsystems.Wrist;
 
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
-import com.arcrobotics.ftclib.gamepad.GamepadEx;
+
 
 
 public class GroundGrabLong extends SequentialCommandGroup {
 
-    public GroundGrabLong(Arm arm, Elevator elevator, Wrist wrist)/*, GamepadEx gamepad)*/ {
+    public GroundGrabLong(Arm arm, Elevator elevator, Wrist wrist) {
         addCommands(
                 new ElevatorPositions(elevator, 10).withTimeout(500),
                 new MoveArm(arm, Constants.Arm.ARM_LONG_GROUNDGRAB).withTimeout(500),

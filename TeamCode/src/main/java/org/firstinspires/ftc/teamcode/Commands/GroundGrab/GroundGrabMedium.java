@@ -17,7 +17,7 @@ public class GroundGrabMedium extends SequentialCommandGroup {
         addCommands(
                 new ElevatorPositions(elevator, 10).withTimeout(500),
                 new MoveArm(arm, Constants.Arm.ARM_MEDIUM_GROUNDGRAB).withTimeout(500),
-                new MoveWrist(wrist, Constants.Wrist.WRIST_GROUNDGRAB_LONG).withTimeout(500),
+                new MoveWrist(wrist, Constants.Wrist.WRIST_GROUNDGRAB_MEDIUM).withTimeout(500),
                 new ElevatorPositions(elevator, Constants.Elevator.ELEVATOR_MEDIUM_GROUNDGRAB).withTimeout(1500)
         );
     }

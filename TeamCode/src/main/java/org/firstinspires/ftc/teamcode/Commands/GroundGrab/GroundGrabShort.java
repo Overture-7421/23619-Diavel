@@ -16,10 +16,9 @@ public class GroundGrabShort extends SequentialCommandGroup {
 
     public GroundGrabShort(Arm arm, Elevator elevator, Wrist wrist){
         addCommands(
-                //new MoveArm(arm, 20).withTimeout(500),
                 new ElevatorPositions(elevator, 10).withTimeout(500),
                 new MoveArm(arm, Constants.Arm.ARM_SHORT_GROUNDGRAB).withTimeout(500),
-                new MoveWrist(wrist, Constants.Wrist.WRIST_GROUNDGRAB_LONG).withTimeout(500),
+                new MoveWrist(wrist, Constants.Wrist.WRIST_GROUNDGRAB_SHORT).withTimeout(500),
                 new ElevatorPositions(elevator, Constants.Elevator.ELEVATOR_SHORT_GROUNDGRAB).withTimeout(1500)
         );
     }

@@ -82,11 +82,11 @@ public final class Constants {
 
         //GROUNDGRAB
 
-        public static final double WRIST_GROUNDGRAB_SHORT = ((Arm.ARM_SHORT_GROUNDGRAB + 90 + 11)/180);
+        public static final double WRIST_GROUNDGRAB_SHORT = 0.35; //((Arm.ARM_SHORT_GROUNDGRAB + 90 + 11)/180)
 
-        public static final double WRIST_GROUNDGRAB_MEDIUM = ((Arm.ARM_MEDIUM_GROUNDGRAB + 90 + 11)/180);
+        public static final double WRIST_GROUNDGRAB_MEDIUM = 0.38; //((Arm.ARM_MEDIUM_GROUNDGRAB + 90 + 11)/180);
 
-        public static final double WRIST_GROUNDGRAB_LONG = ((Arm.ARM_LONG_GROUNDGRAB + 90 + 11)/180);
+        public static final double WRIST_GROUNDGRAB_LONG = 0.41; // (Arm.ARM_LONG_GROUNDGRAB + 90 + 11)/180);
 
     }
 }
