@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.Commands.Chambers;
 import org.firstinspires.ftc.teamcode.Commands.Arm.MoveArm;
+import org.firstinspires.ftc.teamcode.Commands.Intake.MoveIntake;
 import org.firstinspires.ftc.teamcode.Commands.StowAll;
 import org.firstinspires.ftc.teamcode.Subsystems.Arm;
 import org.firstinspires.ftc.teamcode.Subsystems.Constants;
@@ -9,6 +10,7 @@ import com.arcrobotics.ftclib.command.ParallelCommandGroup;
 import com.arcrobotics.ftclib.command.SequentialCommandGroup;
 import com.arcrobotics.ftclib.command.WaitCommand;
 import org.firstinspires.ftc.teamcode.Commands.Elevator.ElevatorPositions;
+import org.firstinspires.ftc.teamcode.Commands.Intake.MoveIntake;
 
 public class HighChamber extends SequentialCommandGroup {
 
@@ -17,7 +19,8 @@ public class HighChamber extends SequentialCommandGroup {
                 new MoveArm(arm, Constants.Arm.ARM_HIGHCHAMBER).withTimeout(500),
                 new ElevatorPositions(elevator,Constants.Elevator.ELEVATOR_HIGHCHAMBER).withTimeout(700),
                 new WaitCommand(1500),
-                new MoveArm(arm, Constants.Arm.ARM_HIGHCHAMBER-20).withTimeout(500)
+                new MoveArm(arm, Constants.Elevator.ELEVATOR_HIGHCHAMBER+10).withTimeout(500)
+
 
 
                 //new MoveArm(arm, Constants.Arm.ARM_HIGHCHAMBER-15).withTimeout(500),

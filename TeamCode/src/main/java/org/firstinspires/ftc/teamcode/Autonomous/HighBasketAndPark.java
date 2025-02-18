@@ -66,7 +66,8 @@ public class HighBasketAndPark extends LinearOpMode {
 
 
         SequentialCommandGroup FirstCommandGroup = new SequentialCommandGroup(
-                new HighBasket(arm, elevator),
+                new MoveArm(arm, 55),
+                new ElevatorPositions(elevator,69),
                 new ChassisPaths(chassis, 0,0.2).withTimeout(5000),
         new MoveIntake(intake, 0),
         new ChassisPaths(chassis, 0,-0.2).withTimeout(5000),
@@ -90,6 +91,14 @@ public class HighBasketAndPark extends LinearOpMode {
             telemetry.addData("RightDistance", chassis.rightDistance());
             telemetry.addData("LeftDistance", chassis.leftDistance());
             telemetry.update();
+
+            telemetry.addLine("--- Subsystem Telemetry ---");
+            telemetry.addData("Elevator_Distance", elevator.getHeight());
+            telemetry.addData("Arm Position", arm.getPosition());
+            telemetry.addData("Arm Target", arm.target);
+            telemetry.addData("Elevator Target", elevator.target);
+            telemetry.addData("PushButton State", arm.ActiveButtonReset);
+            telemetry.addData("PushButton", arm.pushButton.getState());
         }
     }
 }
