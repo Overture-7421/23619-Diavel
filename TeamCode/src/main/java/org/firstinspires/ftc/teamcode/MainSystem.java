@@ -15,6 +15,8 @@ import org.firstinspires.ftc.teamcode.Commands.GroundGrab.GroundGrabShort;
 import org.firstinspires.ftc.teamcode.Commands.StowAll;
 import org.firstinspires.ftc.teamcode.Subsystems.Chassis;
 import org.firstinspires.ftc.teamcode.Subsystems.Intake;
+import org.firstinspires.ftc.teamcode.Subsystems.Wrist;
+import org.firstinspires.ftc.teamcode.Commands.Wrist.MoveWrist;
 import org.firstinspires.ftc.teamcode.Commands.Intake.MoveIntake;
 import org.firstinspires.ftc.teamcode.Subsystems.Arm;
 import org.firstinspires.ftc.teamcode.Subsystems.Elevator;
@@ -29,6 +31,7 @@ import com.arcrobotics.ftclib.command.button.Button;
 import com.qualcomm.robotcore.hardware.DigitalChannel;
 
 import org.firstinspires.ftc.teamcode.Commands.Drive;
+import org.firstinspires.ftc.teamcode.Subsystems.Wrist;
 
 import java.io.PushbackInputStream;
 
@@ -48,6 +51,7 @@ public class MainSystem extends LinearOpMode {
     Intake intake = new Intake(hardwareMap);
     Arm arm = new Arm(hardwareMap);
     Elevator elevator = new Elevator(hardwareMap);
+    Wrist wrist = new Wrist(hardwareMap);
 
 
 
@@ -71,18 +75,18 @@ public class MainSystem extends LinearOpMode {
         // GROUND GRAB COMMANDS
             // SHORT GROUND GRAB
             Button driverButtonA = driver.getGamepadButton(GamepadKeys.Button.A);
-            driverButtonA.whenHeld(new GroundGrabShort(arm, elevator));
-            driverButtonA.whenReleased(new GroundGrabShort(arm, elevator));
+            driverButtonA.whenHeld(new GroundGrabShort(arm, elevator, wrist));
+            driverButtonA.whenReleased(new GroundGrabShort(arm, elevator, wrist));
 
             // MEDIUM GROUND GRAB
             Button driverButtonY = driver.getGamepadButton(GamepadKeys.Button.Y);
-            driverButtonY.whenHeld(new GroundGrabMedium(arm, elevator));
-            driverButtonY.whenReleased(new GroundGrabMedium(arm, elevator));
+            driverButtonY.whenHeld(new GroundGrabMedium(arm, elevator, wrist));
+            driverButtonY.whenReleased(new GroundGrabMedium(arm, elevator, wrist));
 
             // LONG GROUND GRAB
             Button driverRightBumper = driver.getGamepadButton(GamepadKeys.Button.RIGHT_BUMPER);
-            driverRightBumper.whenPressed(new GroundGrabLong(arm, elevator/*, driver*/));
-            driverRightBumper.whenReleased(new GroundGrabLong(arm, elevator/*, driver*/));
+            driverRightBumper.whenPressed(new GroundGrabLong(arm, elevator/*, driver*/, wrist));
+            driverRightBumper.whenReleased(new GroundGrabLong(arm, elevator/*, driver*/, wrist));
 
 
         // MANUAL ARM
@@ -98,14 +102,17 @@ public class MainSystem extends LinearOpMode {
         /* GAME ROUTINES */
             // BASKETS
             Button operatorButtonA = operator.getGamepadButton(GamepadKeys.Button.A);
-            operatorButtonA.whenPressed(new LowBasket(arm, elevator));
+            operatorButtonA.whileHeld(new LowBasket(arm, elevator, wrist));
+        operatorButtonA.whenReleased(new StowAll(arm, elevator));
 
             Button operatorButtonB = operator.getGamepadButton(GamepadKeys.Button.B);
-            operatorButtonB.whenPressed(new HighBasket( arm, elevator));
+            operatorButtonB.whileHeld(new HighBasket( arm, elevator, wrist));
+            operatorButtonB.whenReleased(new HighBasket( arm, elevator, wrist));
 
-            // CHAMBERS
+
+        // CHAMBERS
             Button operatorButtonY = operator.getGamepadButton(GamepadKeys.Button.Y);
-            operatorButtonY.whenPressed(new HighChamber(arm, elevator));
+            operatorButtonY.whenPressed(new HighChamber(arm, elevator, wrist));
 
             Button operatorButtonX = operator.getGamepadButton(GamepadKeys.Button.X);
             operatorButtonX.whenPressed(new LowChamber(arm, elevator));
@@ -116,7 +123,7 @@ public class MainSystem extends LinearOpMode {
 
             // CLIMB
             Button driverLeftBumper = driver.getGamepadButton(GamepadKeys.Button.LEFT_BUMPER);
-            driverLeftBumper.whenPressed(new GrabSpecimens(arm, elevator));
+            driverLeftBumper.whenPressed(new GrabSpecimens(arm, elevator, wrist));
 
 
         waitForStart();

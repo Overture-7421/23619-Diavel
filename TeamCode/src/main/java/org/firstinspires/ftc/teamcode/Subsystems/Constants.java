@@ -19,7 +19,7 @@ public final class Constants {
 
 
 
-            public static final double ARM_CLIMB = -16; /* PENDING TEST */
+            public static final double ARM_SPECIMENS = -25; /* PENDING TEST */
 
             // BASKETS
             public static final double ARM_LOWBASKET = 100;

@@ -16,8 +16,8 @@ public class Wrist extends SubsystemBase {
         wristServo = new SimpleServo(hardwareMap, "wristServo", 0, 1.0);
     }
 
-    public void IntakePosition(double intake_Position) {
-        wristServo.setPosition(intake_Position);
+    public void WristPosition(double wrist_Position) {
+        wristServo.setPosition(wrist_Position);
     }
 
 }
