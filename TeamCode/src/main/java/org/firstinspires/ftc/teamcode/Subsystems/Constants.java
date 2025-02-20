@@ -72,7 +72,7 @@ public final class Constants {
                 public static final double WRIST_LOWCHAMBER = 0;
 
                 // TEST POSITIONS
-                public static final double WRIST_SHORT = 0.3; //((Arm.ARM_SHORT_GROUNDGRAB + 90 + 11)/180)
+                public static final double WRIST_SHORT = 0.1; //((Arm.ARM_SHORT_GROUNDGRAB + 90 + 11)/180)
                 public static final double WRIST_MEDIUM = 0.5; //((Arm.ARM_MEDIUM_GROUNDGRAB + 90 + 11)/180);
                 public static final double WRIST_LONG = 0.9; // (Arm.ARM_LONG_GROUNDGRAB + 90 + 11)/180);
 

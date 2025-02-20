@@ -75,7 +75,7 @@ public class MainSystem extends LinearOpMode {
 
         // WRIST MANUAL POSITIONS AND TEST
             Button driverRightJoystickButton = driver.getGamepadButton(GamepadKeys.Button.RIGHT_STICK_BUTTON);
-            driverRightJoystickButton.whenPressed(new MoveWrist(wrist, Constants.Wrist.WRIST_SHORT));
+            driverRightJoystickButton.whenPressed(new MoveWrist(wrist,Constants.Wrist.WRIST_MEDIUM));
 
             Button driverLeftJoystickButton = driver.getGamepadButton(GamepadKeys.Button.LEFT_STICK_BUTTON);
             driverLeftJoystickButton.whenPressed(new MoveWrist(wrist, Constants.Wrist.WRIST_LONG));
