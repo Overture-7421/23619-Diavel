@@ -16,9 +16,9 @@ public class HighBasket extends SequentialCommandGroup {
 
         addCommands(
                 new MoveArm(arm, Constants.Arm.ARM_HIGHBASKET).withTimeout(1500),
-
-                new MoveWrist(wrist, 0).withTimeout(500),
-                new ElevatorPositions(elevator, Constants.Elevator.ELEVATOR_HIGHBASKET).withTimeout(1500)
+                new MoveWrist(wrist, Constants.Wrist.WRIST_LONG).withTimeout(500),
+                new ElevatorPositions(elevator, Constants.Elevator.ELEVATOR_HIGHBASKET).withTimeout(1500),
+                new MoveWrist(wrist, Constants.Wrist.WRIST_MEDIUM).withTimeout(500)
         );
 
     }

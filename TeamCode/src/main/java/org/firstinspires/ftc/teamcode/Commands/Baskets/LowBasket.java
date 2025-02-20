@@ -15,7 +15,7 @@ public class LowBasket extends SequentialCommandGroup {
     public LowBasket (Arm arm, Elevator elevator, Wrist wrist){
         addCommands(
                 new MoveArm(arm, Constants.Arm.ARM_LOWBASKET).withTimeout(500),
-                new MoveWrist(wrist, 0).withTimeout(500),
+                new MoveWrist(wrist, Constants.Wrist.WRIST_HIGHBASKET).withTimeout(500),
                 new ElevatorPositions(elevator, Constants.Elevator.ELEVATOR_LOWBASKET).withTimeout(500)
 
 

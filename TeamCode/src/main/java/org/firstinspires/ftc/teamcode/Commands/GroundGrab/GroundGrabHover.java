@@ -25,8 +25,8 @@ public class GroundGrabHover extends SequentialCommandGroup {
                 new MoveIntake(intake, Constants.Intake.INTAKE_OPEN).withTimeout(500),
 
                 new WaitForButton(driver, GamepadKeys.Button.Y),
-                new ElevatorPositions(elevator, Constants.Elevator.ELEVATOR_LONG_GROUNDGRAB).withTimeout(1500),
-                new MoveWrist(wrist, Constants.Wrist.WRIST_GROUNDGRAB_SHORT).withTimeout(500)
+                new ElevatorPositions(elevator, Constants.Elevator.ELEVATOR_HOVER_GROUNDGRAB).withTimeout(1500),
+                new MoveWrist(wrist, Constants.Wrist.WRIST_GROUNDGRAB).withTimeout(500)
         );
     }
 

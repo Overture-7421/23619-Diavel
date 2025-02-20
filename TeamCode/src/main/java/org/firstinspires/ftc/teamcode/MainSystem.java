@@ -58,10 +58,10 @@ public class MainSystem extends LinearOpMode {
 
         // MANUAL INTAKE
         Button driverButtonX= driver.getGamepadButton(GamepadKeys.Button.X);
-        driverButtonX.whenPressed(new MoveIntake(intake,1.0));
+        driverButtonX.whenPressed(new MoveIntake(intake,0.0));
 
         Button driverButtonB= driver.getGamepadButton(GamepadKeys.Button.B);
-        driverButtonB.whenPressed(new MoveIntake(intake,0.0));
+        driverButtonB.whenPressed(new MoveIntake(intake,1.0));
 
 
         // GROUND GRAB COMMANDS
@@ -100,23 +100,23 @@ public class MainSystem extends LinearOpMode {
             // BASKETS
             Button operatorButtonA = operator.getGamepadButton(GamepadKeys.Button.A);
             operatorButtonA.whileHeld(new LowBasket(arm, elevator, wrist));
-            operatorButtonA.whenReleased(new StowAll(arm, elevator));
+            operatorButtonA.whenReleased(new StowAll(arm, elevator, wrist));
 
             Button operatorButtonB = operator.getGamepadButton(GamepadKeys.Button.B);
             operatorButtonB.whileHeld(new HighBasket( arm, elevator, wrist));
-            operatorButtonB.whenReleased(new HighBasket( arm, elevator, wrist));
+            operatorButtonB.whenReleased(new StowAll( arm, elevator, wrist));
 
 
         // CHAMBERS
+            Button operatorButtonX = operator.getGamepadButton(GamepadKeys.Button.X);
+            operatorButtonX.whenPressed(new LowChamber(arm, elevator, wrist, operator));
+
             Button operatorButtonY = operator.getGamepadButton(GamepadKeys.Button.Y);
             operatorButtonY.whenPressed(new HighChamber(arm, elevator, wrist));
 
-            Button operatorButtonX = operator.getGamepadButton(GamepadKeys.Button.X);
-            operatorButtonX.whenPressed(new LowChamber(arm, elevator));
-
             // STOW ALL
             Button operatorRightBumper = operator.getGamepadButton(GamepadKeys.Button.RIGHT_BUMPER);
-            operatorRightBumper.whenPressed(new StowAll(arm, elevator));
+            operatorRightBumper.whenPressed(new StowAll(arm, elevator, wrist));
 
             // CLIMB
             Button driverLeftBumper = driver.getGamepadButton(GamepadKeys.Button.LEFT_BUMPER);

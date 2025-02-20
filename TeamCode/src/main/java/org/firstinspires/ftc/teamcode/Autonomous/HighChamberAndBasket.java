@@ -89,7 +89,7 @@ public class HighChamberAndBasket extends LinearOpMode {
                 //deja la pieza, hace falta el movimiento
                 //se traslada
                 new RamsetteCommand(chassis, Middle),
-                new StowAll(arm, elevator),
+                new StowAll(arm, elevator, wrist),
                 new RamsetteCommand(chassis, Second),
 
                 //agarra la pieza
@@ -100,13 +100,13 @@ public class HighChamberAndBasket extends LinearOpMode {
 
                         new ElevatorPositions(elevator, 34).withTimeout(1500),
                         new MoveIntake(intake, 0).withTimeout(500)),
-                new StowAll(arm, elevator),
+                new StowAll(arm, elevator, wrist),
 
                 //deja la pieza
                 new HighBasket(arm,elevator,wrist),
                 new MoveIntake(intake, 0),
                 new MoveArm(arm, 90),
-                new StowAll(arm, elevator),
+                new StowAll(arm, elevator, wrist),
 
                 //se estaciona
                 new TurnToAngle(chassis,Rotation2d.fromDegrees(-90)),
