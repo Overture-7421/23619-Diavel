@@ -3,65 +3,78 @@ package org.firstinspires.ftc.teamcode.Subsystems;
 public final class Constants {
     private Constants(){}
 
-    public static class Arm {
-        /* ARM POSITIONS */
-            public static final double ARM_STOW = -33;
+    /* ARM POSITIONS */
+            public static class Arm {
+                    public static final double ARM_STOW = -35;
 
-            // GROUND GRAB
-                // SHORT GROUND GRAB
-                public static final double ARM_SHORT_GROUNDGRAB = -37;
+                    // GROUND GRAB HOVER
+                    public static final double ARM_GROUNDGRAB = -22;
 
-                // MEDIUM GROUND GRAB
-                public static final double ARM_MEDIUM_GROUNDGRAB = -32.5;
+                    // GROUND GRAB PICK
+                    public static final double ARM_GROUNDGRAB_PICK = -26;
 
-                // LONG GROUND GRAB
-                public static final double ARM_LONG_GROUNDGRAB = -28;
+                    // SPECIMENS PICK
+                    public static final double ARM_SPECIMENS = -25; /* PENDING TEST */
 
+                    // BASKETS
+                    public static final double ARM_LOWBASKET = 90;
+                    public static final double ARM_HIGHBASKET = 90;
 
+                    // CHAMBERS
+                    public static final double ARM_LOWCHAMBER = 0;
+                    public static final double ARM_HIGHCHAMBER = 0;
+            }
 
-            public static final double ARM_CLIMB = -16; /* PENDING TEST */
+    /* INTAKE POSITIONS */
+            public static class Intake {
+                public static final double INTAKE_STOW = 0.0;
+                public static final double INTAKE_OPEN = 1.0;
+            }
 
-            // BASKETS
-            public static final double ARM_LOWBASKET = 40;
-            public static final double ARM_HIGHBASKET = 55;
+    /* ELEVATOR POSITIONS */
+            public static class Elevator {
+                public static final double ELEVATOR_STOW = 0;
 
-            // CHAMBERS
-            public static final double ARM_LOWCHAMBER = 0;
-            public static final double ARM_HIGHCHAMBER = 24;// 15 si se hace de abajo-arriba y 90 si se hace de arriba-abajo
-    }
-
-    public static class Elevator {
-        /* ELEVATOR POSITIONS */
-            public static final double ELEVATOR_STOW = 0;
-
-            //ELEVATOR GROUND GRAB
-                //ELEVATOR SHORT GROUND GRAB
-
-                //All distances are in cm
-                public static final double ELEVATOR_SHORT_GROUNDGRAB = 30.5;//12 in
-
-                //ELEVATOR MEDIUM GROUND GRAB
-                public static final double ELEVATOR_MEDIUM_GROUNDGRAB =  39.5;//15.5 in
-
-                //ELEVATOR LONG GROUND GRAB
-                public static final double ELEVATOR_LONG_GROUNDGRAB = 48; //18.9 in
+                public static final double ELEVATOR_HOVER_GROUNDGRAB = 48; //18.9 in
 
 
-            //public static final double ELEVATOR_CLIMB = 5; /* PENDING TEST */
+                public static final double ELEVATOR_CLIMB = 5;
 
-            // BASKETS
-            /*
-            Clarification:
-             The following distances may seem to exceed the maximum length stipulated in rule R104, however,
-             the distances are with the arm at a high angle thus, the total horizontal expansion limit
-             is still acknowledged as per rule R104. This was calculated using trigonometry with the following formula.
-                    HorizontalExtension = cosine(armAngle) * ElevatorExtension
-           */
-            public static final double ELEVATOR_LOWBASKET = 30;//23 inches of extension
-            public static final double ELEVATOR_HIGHBASKET = 69;//40 inches of extension
+              /*
+                Clarification:
+                 The following distances may seem to exceed the maximum length stipulated in rule R104, however,
+                 the distances are with the arm at a high angle thus, the total horizontal expansion limit
+                 is still acknowledged as per rule R104. This was calculated using trigonometry with the following formula.
+                        HorizontalExtension = cosine(armAngle) * ElevatorExtension
+               */
 
-            // CHAMBERS
-            public static final double ELEVATOR_LOWCHAMBER = 0; // 0 inches of extension
-            public static final double ELEVATOR_HIGHCHAMBER = 30;//26.2 inches of extension
-    }
+                // BASKETS
+                public static final double ELEVATOR_LOWBASKET = 32;//23 inches of extension
+                public static final double ELEVATOR_HIGHBASKET = 63;//40 inches of extension
+
+                // CHAMBERS
+                public static final double ELEVATOR_LOWCHAMBER = 0; // 0 inches of extension
+                public static final double ELEVATOR_HIGHCHAMBER = 25;//
+
+            }
+
+    /* WRIST POSITIONS */
+            public static class Wrist {
+                // BASKETS
+                public static final double WRIST_HIGHBASKET = 0.3;
+                public static final double WRIST_LOWBASKET = 0;
+
+                // GROUND GRAB
+                public static final double WRIST_GROUNDGRAB = 0.9;
+
+                // CHAMBERS
+                public static final double WRIST_HIGHCHAMBER = 0;
+                public static final double WRIST_LOWCHAMBER = 0;
+
+                // TEST POSITIONS
+                public static final double WRIST_SHORT = 0.1; //((Arm.ARM_SHORT_GROUNDGRAB + 90 + 11)/180)
+                public static final double WRIST_MEDIUM = 0.5; //((Arm.ARM_MEDIUM_GROUNDGRAB + 90 + 11)/180);
+                public static final double WRIST_LONG = 0.9; // (Arm.ARM_LONG_GROUNDGRAB + 90 + 11)/180);
+
+            }
 }

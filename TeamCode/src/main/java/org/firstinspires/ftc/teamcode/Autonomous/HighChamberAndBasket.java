@@ -25,6 +25,7 @@ import org.firstinspires.ftc.teamcode.Subsystems.Chassis;
 import org.firstinspires.ftc.teamcode.Subsystems.Elevator;
 import org.firstinspires.ftc.teamcode.Subsystems.Arm;
 import org.firstinspires.ftc.teamcode.Subsystems.Intake;
+import org.firstinspires.ftc.teamcode.Subsystems.Wrist;
 
 import java.util.Arrays;
 
@@ -42,7 +43,7 @@ public class HighChamberAndBasket extends LinearOpMode {
         Elevator elevator= new Elevator(hardwareMap);
         Arm arm = new Arm(hardwareMap);
         Intake intake = new Intake(hardwareMap);
-
+        Wrist wrist = new Wrist(hardwareMap);
 
         //Forward
         TrajectoryConfig ForwardConfig = new TrajectoryConfig(0.5,0.2);
@@ -88,7 +89,7 @@ public class HighChamberAndBasket extends LinearOpMode {
                 //deja la pieza, hace falta el movimiento
                 //se traslada
                 new RamsetteCommand(chassis, Middle),
-                new StowAll(arm, elevator),
+                new StowAll(arm, elevator, wrist),
                 new RamsetteCommand(chassis, Second),
 
                 //agarra la pieza
@@ -99,13 +100,13 @@ public class HighChamberAndBasket extends LinearOpMode {
 
                         new ElevatorPositions(elevator, 34).withTimeout(1500),
                         new MoveIntake(intake, 0).withTimeout(500)),
-                new StowAll(arm, elevator),
+                new StowAll(arm, elevator, wrist),
 
                 //deja la pieza
-                new HighBasket(arm,elevator),
+                new HighBasket(arm,elevator,wrist),
                 new MoveIntake(intake, 0),
                 new MoveArm(arm, 90),
-                new StowAll(arm, elevator),
+                new StowAll(arm, elevator, wrist),
 
                 //se estaciona
                 new TurnToAngle(chassis,Rotation2d.fromDegrees(-90)),

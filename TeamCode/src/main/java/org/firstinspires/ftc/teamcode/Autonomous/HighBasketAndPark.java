@@ -26,6 +26,7 @@ import org.firstinspires.ftc.teamcode.Subsystems.Constants;
 import org.firstinspires.ftc.teamcode.Subsystems.Elevator;
 import org.firstinspires.ftc.teamcode.Subsystems.Arm;
 import org.firstinspires.ftc.teamcode.Subsystems.Intake;
+import org.firstinspires.ftc.teamcode.Subsystems.Wrist;
 
 import java.util.Arrays;
 
@@ -43,6 +44,7 @@ public class HighBasketAndPark extends LinearOpMode {
         Elevator elevator= new Elevator(hardwareMap);
         Arm arm = new Arm(hardwareMap);
         Intake intake = new Intake(hardwareMap);
+        Wrist wrist = new Wrist(hardwareMap);
 
 
         //Forward
@@ -59,19 +61,13 @@ public class HighBasketAndPark extends LinearOpMode {
         );
 
 
-
-
-
-
-
-
         SequentialCommandGroup FirstCommandGroup = new SequentialCommandGroup(
-                new HighBasket(arm, elevator),
+                new MoveArm(arm, 55),
+                new ElevatorPositions(elevator,69),
                 new ChassisPaths(chassis, 0,0.2).withTimeout(5000),
-        new MoveIntake(intake, 0),
-        new ChassisPaths(chassis, 0,-0.2).withTimeout(5000),
-                new StowAll(arm, elevator)
-
+                new MoveIntake(intake, 0),
+                new ChassisPaths(chassis, 0,-0.2).withTimeout(5000),
+                new StowAll(arm, elevator, wrist)
         );
 
         waitForStart();
@@ -90,6 +86,14 @@ public class HighBasketAndPark extends LinearOpMode {
             telemetry.addData("RightDistance", chassis.rightDistance());
             telemetry.addData("LeftDistance", chassis.leftDistance());
             telemetry.update();
+
+            telemetry.addLine("--- Subsystem Telemetry ---");
+            telemetry.addData("Elevator_Distance", elevator.getHeight());
+            telemetry.addData("Arm Position", arm.getPosition());
+            telemetry.addData("Arm Target", arm.target);
+            telemetry.addData("Elevator Target", elevator.target);
+            telemetry.addData("PushButton State", arm.ActiveButtonReset);
+            telemetry.addData("PushButton", arm.pushButton.getState());
         }
     }
 }
