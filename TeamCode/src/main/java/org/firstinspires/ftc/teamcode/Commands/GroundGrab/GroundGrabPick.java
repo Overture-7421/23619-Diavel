@@ -19,7 +19,7 @@ public class GroundGrabPick extends SequentialCommandGroup   {
                 new MoveArm(arm, Constants.Arm.ARM_GROUNDGRAB_PICK).withTimeout(100),
                 new MoveIntake(intake, Constants.Intake.INTAKE_STOW).withTimeout(100),
                 new WaitCommand(500),
-                new MoveArm(arm, Constants.Arm.ARM_GROUNDGRAB).withTimeout(100)
+                new MoveArm(arm, Constants.Arm.ARM_GROUNDGRAB).withTimeout(250)
         );
     }
 }

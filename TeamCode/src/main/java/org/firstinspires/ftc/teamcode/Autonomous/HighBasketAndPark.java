@@ -62,12 +62,42 @@ public class HighBasketAndPark extends LinearOpMode {
 
 
         SequentialCommandGroup FirstCommandGroup = new SequentialCommandGroup(
+
+                new MoveIntake(intake, Constants.Intake.INTAKE_STOW),
+                new ChassisPaths(chassis, 0, 0.5).withTimeout(2500),
+        new TurnToAngle(chassis, Rotation2d.fromDegrees(90)),
+        new ChassisPaths(chassis, 0, -0.5).withTimeout(2500),
+               new MoveArm(arm, 75)
+
+
+               /* new HighBasket(arm, elevator, wrist),
+                new MoveArm(arm, 95).withTimeout(250),
+                new MoveIntake(intake, Constants.Intake.INTAKE_OPEN).withTimeout(100),
+                new MoveArm(arm, 80).withTimeout(250),
+                new StowAll(arm, elevator, wrist),
+
+
+                new TurnToAngle(chassis, Rotation2d.fromDegrees(90)),
+                new MoveArm(arm, -24) ,
+                new ElevatorPositions(elevator, 50),
+                new StowAll(arm, elevator, wrist),
+                new TurnToAngle(chassis, Rotation2d.fromDegrees(0)),
+
+
+                new HighBasket(arm, elevator, wrist),
+                new MoveArm(arm, 95).withTimeout(250),
+                new MoveIntake(intake, Constants.Intake.INTAKE_OPEN).withTimeout(100),
+                new MoveArm(arm, 80).withTimeout(250),
+                new StowAll(arm, elevator, wrist)
+*/
+
+                /*
                 new MoveArm(arm, 55),
                 new ElevatorPositions(elevator,69),
                 new ChassisPaths(chassis, 0,0.2).withTimeout(5000),
                 new MoveIntake(intake, 0),
                 new ChassisPaths(chassis, 0,-0.2).withTimeout(5000),
-                new StowAll(arm, elevator, wrist)
+                new StowAll(arm, elevator, wrist)*/
         );
 
         waitForStart();
