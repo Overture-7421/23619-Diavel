@@ -24,11 +24,15 @@ public class ModifyElevatorCommand extends CommandBase {
     public void execute() {
         if (gamepad != null) {
             if (gamepad.dpad_right) {
-                elevator.setGoal(elevator.getHeight() + INCREMENT);
+                    //if (elevator.getHeight() + INCREMENT<=55) {
+                        elevator.setGoal(elevator.getHeight() + INCREMENT);
+                    //}
+
             } else if (gamepad.dpad_left) {
                 elevator.setGoal(elevator.getHeight() - INCREMENT);
             }
         }
+
     }
 
     @Override

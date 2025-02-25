@@ -8,21 +8,21 @@ public final class Constants {
                     public static final double ARM_STOW = -35;
 
                     // GROUND GRAB HOVER
-                    public static final double ARM_GROUNDGRAB = -22;
+                    public static final double ARM_GROUNDGRAB = -23;
 
                     // GROUND GRAB PICK
                     public static final double ARM_GROUNDGRAB_PICK = -26;
 
                     // SPECIMENS PICK
-                    public static final double ARM_SPECIMENS = -25; /* PENDING TEST */
+                    public static final double ARM_SPECIMENS = -23; /* PENDING TEST */
 
                     // BASKETS
-                    public static final double ARM_LOWBASKET = 90;
-                    public static final double ARM_HIGHBASKET = 90;
+                    public static final double ARM_LOWBASKET = 85;
+                    public static final double ARM_HIGHBASKET = 85;
 
                     // CHAMBERS
                     public static final double ARM_LOWCHAMBER = 0;
-                    public static final double ARM_HIGHCHAMBER = 0;
+                    public static final double ARM_HIGHCHAMBER = 25;
             }
 
     /* INTAKE POSITIONS */

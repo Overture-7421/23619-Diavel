@@ -16,7 +16,7 @@ public class GrabSpecimens extends SequentialCommandGroup {
     public GrabSpecimens(Arm arm, Elevator elevator, Wrist wrist){
         addCommands(
             new MoveArm(arm, Constants.Arm.ARM_SPECIMENS).withTimeout(500),
-            new MoveWrist(wrist, ((Constants.Arm.ARM_SPECIMENS - 90 + 11)/180)).withTimeout(500),
+            new MoveWrist(wrist, (0.5)).withTimeout(500),
             new ElevatorPositions(elevator,20).withTimeout(700)
 
 
