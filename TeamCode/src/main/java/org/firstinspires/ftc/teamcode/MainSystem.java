@@ -58,10 +58,10 @@ public class MainSystem extends LinearOpMode {
 
         // MANUAL INTAKE
         Button driverButtonX= driver.getGamepadButton(GamepadKeys.Button.X);
-        driverButtonX.whenPressed(new MoveIntake(intake,0.0));
+        driverButtonX.whenPressed(new MoveIntake(intake,1.0));
 
         Button driverButtonB= driver.getGamepadButton(GamepadKeys.Button.B);
-        driverButtonB.whenPressed(new MoveIntake(intake,1.0));
+        driverButtonB.whenPressed(new MoveIntake(intake,0.0));
 
 
         // GROUND GRAB COMMANDS
