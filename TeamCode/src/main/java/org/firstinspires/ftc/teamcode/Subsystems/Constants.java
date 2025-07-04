@@ -17,8 +17,8 @@ public final class Constants {
                     public static final double ARM_SPECIMENS = -23; /* PENDING TEST */
 
                     // BASKETS
-                    public static final double ARM_LOWBASKET = 85;
-                    public static final double ARM_HIGHBASKET = 85;
+                    public static final double ARM_LOWBASKET = 30;
+                    public static final double ARM_HIGHBASKET = 55;
 
                     // CHAMBERS
                     public static final double ARM_LOWCHAMBER = 0;

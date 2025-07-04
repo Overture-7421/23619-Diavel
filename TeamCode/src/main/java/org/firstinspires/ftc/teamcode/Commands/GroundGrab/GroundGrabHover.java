@@ -21,7 +21,7 @@ public class GroundGrabHover extends SequentialCommandGroup {
     public GroundGrabHover(Arm arm, Elevator elevator, Wrist wrist, Intake intake, GamepadEx driver){
         addCommands(
                 //new WaitForButton(driver, GamepadKeys.Button.RIGHT_BUMPER),
-                new ElevatorPositions(elevator, Constants.Elevator.ELEVATOR_STOW),
+                new ElevatorPositions(elevator, Constants.Elevator.ELEVATOR_STOW).withTimeout(1000),
                 new MoveArm(arm, Constants.Arm.ARM_GROUNDGRAB).withTimeout(500),
                 new MoveIntake(intake, Constants.Intake.INTAKE_OPEN).withTimeout(500),
 
