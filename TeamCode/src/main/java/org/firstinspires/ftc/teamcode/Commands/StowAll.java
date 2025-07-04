@@ -14,7 +14,6 @@ public class StowAll extends SequentialCommandGroup {
 
         public StowAll (Arm arm, Elevator elevator, Wrist wrist){
             addCommands(
-                    new MoveWrist(wrist, Constants.Wrist.WRIST_MEDIUM).withTimeout(500),
                     new ElevatorPositions(elevator, Constants.Elevator.ELEVATOR_STOW).withTimeout(1000),
                     new MoveArm(arm, Constants.Arm.ARM_STOW).withTimeout(1250)
             );
